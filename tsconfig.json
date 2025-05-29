@@ -8,6 +8,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
-    "types": ["jest", "@testing-library/jest-dom"]
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "types": ["jest", "@testing-library/jest-dom"],
+    "esModuleInterop": true
   }
 }

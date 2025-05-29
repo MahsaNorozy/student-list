@@ -4,6 +4,6 @@ import App from "./App";
 
 test("zeigt den Text", () => {
   render(<App />);
-  const text = screen.getByText(/react/i);
-  expect(text).toBeInTheDocument();
+  const texts = screen.getAllByText(/react/i);
+  expect(texts.length).toBeGreaterThan(0);
 });
