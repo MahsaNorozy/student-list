@@ -50,7 +50,8 @@
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
-      "!src/**/*.test.{ts,tsx}"
+      "!src/**/*.test.{ts,tsx}",
+      "!src/vite-env.d.ts"
     ],
     "transform": {
       "^.+\\.tsx?$": [

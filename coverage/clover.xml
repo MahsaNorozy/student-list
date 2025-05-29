@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748533770132" clover="3.2.0">
-  <project timestamp="1748533770132" name="All files">
-    <metrics statements="11" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1" elements="14" coveredelements="6" complexity="0" loc="11" ncloc="11" packages="1" files="3" classes="3"/>
+<coverage generated="1748539064406" clover="3.2.0">
+  <project timestamp="1748539064406" name="All files">
+    <metrics statements="11" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1" elements="14" coveredelements="6" complexity="0" loc="11" ncloc="11" packages="1" files="2" classes="2"/>
     <file name="App.tsx" path="C:\Users\norozy\Desktop\F\student-list\src\App.tsx">
       <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <line num="1" count="1" type="stmt"/>
@@ -18,9 +18,6 @@
       <line num="3" count="0" type="stmt"/>
       <line num="4" count="0" type="stmt"/>
       <line num="6" count="0" type="stmt"/>
-    </file>
-    <file name="vite-env.d.ts" path="C:\Users\norozy\Desktop\F\student-list\src\vite-env.d.ts">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
     </file>
   </project>
 </coverage>
