@@ -11,10 +11,10 @@ import prettierRecommended from "eslint-plugin-prettier/recommended"; // Flat-Co
 export default tseslint.config(
   { ignores: ["dist"] },
   /* ───────── SonarJS-Regeln (automatisch inkl. Plugin) ───────── */
-  sonarjs.configs.recommended, //
+  sonarjs.configs.recommended, // bindet alle Clean-Code-Regeln von SonarJS ein und registriert das Plugin (Flat-Style) – keine Dopplung nötig.
 
   /* ───────── Prettier-Integration ───────── */
-  prettierRecommended, // enthält eslint-config-prettier + plugin
+  prettierRecommended, // enthält eslint-config-prettier + plugin // schaltet Format-Regeln ab (eslint-config-prettier) und aktiviert eslint-plugin-prettier, damit Prettier-Fehler als ESLint-Warnungen erscheinen.
 
   /* ───────── Dein bestehendes Projekt-Profil ───────── */
   {
@@ -27,10 +27,10 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
-
       // Prettier-Plugin muss *hier* noch einmal benannt sein,
       // weil das empfohlene Preset Regeln liefert, aber das Objekt `plugins`
       // NICHT automatisch ergänzt.
+      //enthält deine React-Hooks-Regeln, Globaleinstellungen usw. Reihenfolge ist wichtig → Prettier kommt zuletzt, damit es andere Format-Regeln überstimmt.
       prettier: prettierPlugin,
     },
     rules: {
