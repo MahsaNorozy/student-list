@@ -1,3 +1,6 @@
+[![Quality Gate Status](http://localhost:9000/api/project_badges/measure?project=student-list&metric=alert_status)](http://localhost:9000/dashboard?id=student-list)
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
