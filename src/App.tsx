@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import BadStudentList from "./BadStudentList";
+import BadExample from "./BadExample";
+import TestCodeSmells from "./TestCodeSmells";
+
 import "./App.css";
 
 function App() {
@@ -16,6 +20,10 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <BadStudentList />
+      <BadExample />
+      <TestCodeSmells />
+
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
