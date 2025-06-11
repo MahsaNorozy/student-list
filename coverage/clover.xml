@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748539064406" clover="3.2.0">
-  <project timestamp="1748539064406" name="All files">
-    <metrics statements="11" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1" elements="14" coveredelements="6" complexity="0" loc="11" ncloc="11" packages="1" files="2" classes="2"/>
+<coverage generated="1748770086245" clover="3.2.0">
+  <project timestamp="1748770086245" name="All files">
+    <metrics statements="21" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0" elements="29" coveredelements="0" complexity="0" loc="21" ncloc="21" packages="1" files="3" classes="3"/>
     <file name="App.tsx" path="C:\Users\norozy\Desktop\F\student-list\src\App.tsx">
-      <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-      <line num="1" count="1" type="stmt"/>
-      <line num="3" count="1" type="stmt"/>
-      <line num="6" count="1" type="stmt"/>
-      <line num="8" count="1" type="stmt"/>
-      <line num="20" count="0" type="stmt"/>
-      <line num="34" count="1" type="stmt"/>
+      <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <line num="1" count="0" type="stmt"/>
+      <line num="3" count="0" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="28" count="0" type="stmt"/>
+      <line num="42" count="0" type="stmt"/>
+    </file>
+    <file name="BadStudentList.tsx" path="C:\Users\norozy\Desktop\F\student-list\src\BadStudentList.tsx">
+      <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
     </file>
     <file name="main.tsx" path="C:\Users\norozy\Desktop\F\student-list\src\main.tsx">
       <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
