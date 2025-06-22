@@ -1,9 +1,7 @@
-import { useState } from "react";
-
-import BadStudentList from "./BadStudentList";
 import BadExample from "./BadExample";
+import BadStudentList from "./BadStudentList";
 import TestCodeSmells from "./TestCodeSmells";
-
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -12,11 +10,11 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img className="logo" alt="Vite logo" />
+        <a href="https://vite.dev" rel="noreferrer" target="_blank">
+          <img alt="Vite logo" className="logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img className="logo react" alt="React logo" />
+        <a href="https://react.dev" rel="noreferrer" target="_blank">
+          <img alt="React logo" className="logo react" />
         </a>
       </div>
       <h1>Vite + React</h1>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // `useState` is unused
+import React, { useState } from "react"; // `useState` is unused
 
 // Bad
 const handleInputChange = (event: any) => {
@@ -11,8 +11,8 @@ const priceApple = 5;
 const quantityBananas = 5;
 const priceBanana = 5;
 
-let totalApplesPrice: number = quantityApples * priceApple - 5;
-let totalBananasPrice: number = quantityBananas * priceBanana - 5;
+const totalApplesPrice: number = quantityApples * priceApple - 5;
+const totalBananasPrice: number = quantityBananas * priceBanana - 5;
 
 export default function BadExample() {
   const [isActive, setIsActive] = useState(false);
@@ -67,7 +67,7 @@ function getName(x?: string | UserName) {
     console.log("Getting name for " + x!); // Noncompliant
 
     if (typeof x === "string")
-      return (x as string); // Noncompliant
+      return x as string; // Noncompliant
     else return (x as UserName).name; // Noncompliant
   }
   return "NoName";
