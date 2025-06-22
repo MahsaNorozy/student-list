@@ -1,44 +1,87 @@
-import js from "@eslint/js";
+import pluginJs from "@eslint/js";
+import perfectionist from "eslint-plugin-perfectionist";
+import pluginReact from "eslint-plugin-react";
 import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
-import sonarjs from "eslint-plugin-sonarjs";
-import prettierPlugin from "eslint-plugin-prettier";
-import prettierRecommended from "eslint-plugin-prettier/recommended"; // Flat-Config-Preset
-
-export default tseslint.config(
-  { ignores: ["dist"] },
-  /* ───────── SonarJS-Regeln (automatisch inkl. Plugin) ───────── */
-  sonarjs.configs.recommended, // bindet alle Clean-Code-Regeln von SonarJS ein und registriert das Plugin (Flat-Style) – keine Dopplung nötig.
-
-  /* ───────── Prettier-Integration ───────── */
-  prettierRecommended, // enthält eslint-config-prettier + plugin // schaltet Format-Regeln ab (eslint-config-prettier) und aktiviert eslint-plugin-prettier, damit Prettier-Fehler als ESLint-Warnungen erscheinen.
-
-  /* ───────── Dein bestehendes Projekt-Profil ───────── */
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+  perfectionist.configs["recommended-natural"],
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["**/*.{ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-      // Prettier-Plugin muss *hier* noch einmal benannt sein,
-      // weil das empfohlene Preset Regeln liefert, aber das Objekt `plugins`
-      // NICHT automatisch ergänzt.
-      //enthält deine React-Hooks-Regeln, Globaleinstellungen usw. Reihenfolge ist wichtig → Prettier kommt zuletzt, damit es andere Format-Regeln überstimmt.
-      prettier: prettierPlugin,
-    },
+    languageOptions: { globals: globals.browser },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
+      "@typescript-eslint/ban-ts-comment": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-expressions": "error",
+      "@typescript-eslint/no-duplicate-enum-values": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+          varsIgnorePattern: "^_",
+        },
       ],
+      "no-tabs": "error",
+      "no-unused-expressions": "off",
+      "perfectionist/sort-imports": [
+        "error",
+        {
+          customGroups: {
+            value: {
+              BboUiCommunication: [""],
+              BboUiComponent: [""],
+              Json: ["^.+\\.json"],
+            },
+          },
+          groups: [
+            ["builtin", "external"],
+            "BboUiCommunication",
+            "BboUiComponent",
+            [
+              "internal",
+              "internal-type",
+              "parent-type",
+              "sibling-type",
+              "index-type",
+              "parent",
+              "sibling",
+              "index",
+              "type",
+            ],
+            "object",
+            "unknown",
+            "Json",
+          ],
+        },
+      ],
+      "perfectionist/sort-interfaces": ["error", { partitionByNewLine: false }],
+      "perfectionist/sort-modules": [
+        "error",
+        {
+          customGroups: [],
+          groups: [
+            ["function", "declare-function", "declare-class"],
+            ["declare-interface", "declare-type", "declare-enum", "enum"],
+            ["export-function", "export-class"],
+            ["interface"],
+            ["class", "type"],
+            ["export-interface", "export-type", "export-enum"],
+          ],
+          ignoreCase: true,
+          newlinesBetween: "always",
+          order: "asc",
+        },
+      ],
+      "react/react-in-jsx-scope": "off",
     },
   },
-);
+];
