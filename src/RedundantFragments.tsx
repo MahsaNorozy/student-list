@@ -1,4 +1,8 @@
-export function TestRedundantFragments() {
+function Foo() {
+  return <span>Test</span>;
+}
+
+export function RedundantFragments() {
   return (
     <>
       <>
@@ -9,10 +13,6 @@ export function TestRedundantFragments() {
       </p>
     </>
   );
-}
-
-function Foo() {
-  return <span>Test</span>;
 }
 
 // 3 Code Smells: A fragment with only one child is redundant, Passing a fragment to an HTML element is useless.

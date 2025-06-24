@@ -1,4 +1,4 @@
-import App from "./App";
+import App from "./FruherApp";
 /// <reference types="@testing-library/jest-dom" />
 import { render, screen } from "@testing-library/react";
 

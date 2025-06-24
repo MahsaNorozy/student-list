@@ -1,7 +1,5 @@
-export function TestRedundantFragments() {
-  return <img src="sunrise.jpg" alt="image of a sunrise" />;
+export function Image() {
+  return <img alt="image of a sunrise" src="sunrise.jpg" />;
 }
 
-function Foo() {
-  return <span>Test</span>;
-}
+// https://rules.sonarsource.com/typescript/RSPEC-6851/
