@@ -24,21 +24,33 @@ const StudentList: React.FC<Props> = ({ onSelect, selectedId, students }) => (
           padding: "8px",
         }}
       >
-        <img
-          alt={student.name}
-          height={40}
-          src={student.photoUrl}
-          style={{ borderRadius: "50%", marginRight: 12 }}
-          width={40}
-        />
-        <span style={{ flex: 1, textAlign: "left" }}>
-          <b>{student.name}</b>{" "}
-          <span style={{ color: "#888" }}>({student.matriculationNumber})</span>
-        </span>
+        <ProfileImage student={student} />
+        <ProfileInfo student={student} />
       </li>
     ))}
   </ul>
 );
 
+function ProfileImage({ student }: { student: Student }) {
+  return (
+    <img
+      alt={student.name}
+      height={40}
+      src={student.photoUrl}
+      style={{ borderRadius: "50%", marginRight: 12 }}
+      width={40}
+    />
+  );
+}
+function ProfileInfo({ student }: Readonly<{ student: Student }>) {
+  return (
+    <span style={{ flex: 1, textAlign: "left" }}>
+      <b>{student.name}</b>{" "}
+      <span style={{ color: "#888" }}>({student.matriculationNumber})</span>
+    </span>
+  );
+}
+
 export default StudentList;
 // https://rules.sonarsource.com/typescript/tag/react/RSPEC-1077/
+// https://rules.sonarsource.com/typescript/tag/react/RSPEC-6759/

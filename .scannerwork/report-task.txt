@@ -2,5 +2,5 @@ projectKey=student-list
 serverUrl=http://localhost:9000
 serverVersion=25.4.0.105899
 dashboardUrl=http://localhost:9000/dashboard?id=student-list
-ceTaskId=1bb323a4-607e-42bc-8ede-b8dace4cf23f
-ceTaskUrl=http://localhost:9000/api/ce/task?id=1bb323a4-607e-42bc-8ede-b8dace4cf23f
+ceTaskId=a96d33e7-a00e-42a7-831a-b9be7d74b565
+ceTaskUrl=http://localhost:9000/api/ce/task?id=a96d33e7-a00e-42a7-831a-b9be7d74b565
