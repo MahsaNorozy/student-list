@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { Student } from "./types/types";
+import type { Student } from "./types";
 
 type Props = {
   onSelect: (id: number) => void;

@@ -1,7 +1,7 @@
-import { Gender } from "./Gender";
+import { Gender } from "./types/Gender";
 import React, { useState } from "react";
 
-import type { Grade, Student } from "./types/types";
+import type { Grade, Student } from "./types";
 
 type Props = {
   onCancel: () => void;

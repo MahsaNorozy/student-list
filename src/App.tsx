@@ -1,10 +1,10 @@
-import { Gender } from "./Gender";
 import StudentDetails from "./StudentDetails";
 import StudentForm from "./StudentForm";
 import StudentList from "./StudentList";
+import { Gender } from "./types/Gender";
 import React, { useState } from "react";
 
-import type { Student } from "./types/types";
+import type { Student } from "./types";
 
 const initialStudents: Student[] = [
   {
