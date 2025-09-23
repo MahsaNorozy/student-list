@@ -13,7 +13,7 @@ const emptyGrade: Grade = {
   courseName: "",
   date: "",
   grade: "",
-  passed: false,
+  isPassed: false,
 };
 
 const emptyStudent: Omit<Student, "id"> = {
@@ -101,14 +101,14 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         style={{ marginBottom: 8, width: "100%" }}
         value={form.email}
       />
-      <input
+      {/*<input
         name="photoUrl"
         onChange={handleChange}
         placeholder="Foto-URL"
         required
         style={{ marginBottom: 8, width: "100%" }}
         value={form.photoUrl}
-      />
+      />*/}
       <input
         name="address"
         onChange={handleChange}
@@ -189,8 +189,10 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
             value={grade.date}
           />
           <input
-            checked={grade.passed}
-            onChange={(e) => handleGradeChange(idx, "passed", e.target.checked)}
+            checked={grade.isPassed}
+            onChange={(e) =>
+              handleGradeChange(idx, "isPassed", e.target.checked)
+            }
             type="checkbox"
           />
           <label> Bestanden</label>{" "}

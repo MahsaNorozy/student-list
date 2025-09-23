@@ -4,7 +4,7 @@ export type Grade = {
   courseName: string;
   date: string; // ISO-Format
   grade: string;
-  passed: boolean;
+  isPassed: boolean;
 };
 export type Student = {
   address: string;

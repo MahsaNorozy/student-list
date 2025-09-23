@@ -18,13 +18,13 @@ const StudentDetails: React.FC<Props> = ({ onEdit, student }) => (
       padding: 16,
     }}
   >
-    <img
+    {/*<img
       alt={student.name}
       height={80}
       src={student.photoUrl}
       style={{ borderRadius: "50%" }}
       width={80}
-    />
+    />*/}
     <h2>{student.name}</h2>
     <div style={{ margin: "0 auto", maxWidth: 350, textAlign: "left" }}>
       <div>
@@ -64,7 +64,7 @@ const StudentDetails: React.FC<Props> = ({ onEdit, student }) => (
             <td>{g.courseName}</td>
             <td>{g.grade}</td>
             <td>{g.date}</td>
-            <td>{g.passed ? "✔️" : "❌"}</td>
+            <td>{g.isPassed ? "✔️" : "❌"}</td>
           </tr>
         ))}
       </tbody>

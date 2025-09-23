@@ -24,14 +24,14 @@ const StudentList: React.FC<Props> = ({ onSelect, selectedId, students }) => (
           padding: "8px",
         }}
       >
-        <ProfileImage student={student} />
+        {/* <ProfileImage student={student} />*/}
         <ProfileInfo student={student} />
       </li>
     ))}
   </ul>
 );
 
-function ProfileImage({ student }: { student: Student }) {
+/*function ProfileImage({ student }: { student: Student }) {
   return (
     <img
       alt={student.name}
@@ -41,7 +41,7 @@ function ProfileImage({ student }: { student: Student }) {
       width={40}
     />
   );
-}
+}*/
 function ProfileInfo({ student }: Readonly<{ student: Student }>) {
   return (
     <span style={{ flex: 1, textAlign: "left" }}>
