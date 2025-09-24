@@ -5,6 +5,7 @@ import { Gender } from "./types/Gender";
 import React, { useState } from "react";
 
 import type { Student } from "./types";
+import "./styles/App.css";
 
 const initialStudents: Student[] = [
   {
@@ -103,12 +104,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ margin: "0 auto", maxWidth: 600, textAlign: "center" }}>
-      <header style={{ marginBottom: 24 }}>
-        <img src={universityLogo} width={120} />
+    <div className="app-container">
+      <header className="app-header">
+        <img alt="Uni Logo" className="app-logo" src={universityLogo} />
         <h1>Studentenverwaltung</h1>
       </header>
-      <button onClick={handleAddStudent} style={{ marginBottom: 12 }}>
+      <button className="app-add-btn" onClick={handleAddStudent}>
         Student hinzufügen
       </button>
       <StudentList
