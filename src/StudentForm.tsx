@@ -173,9 +173,11 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
           </div>
         </div>
       ))}
-      <button onClick={addGrade} type="button">
-        Kurs hinzufügen
-      </button>
+      <div className="add-grade-row">
+        <button onClick={addGrade} type="button">
+          Note hinzufügen
+        </button>
+      </div>
       <div className="form-actions">
         <button type="submit">{student ? "Speichern" : "Hinzufügen"}</button>
         <button onClick={onCancel} type="button">
