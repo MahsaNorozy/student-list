@@ -2,6 +2,7 @@ import { Gender } from "./types/Gender";
 import React, { useState } from "react";
 
 import type { Grade, Student } from "./types";
+import "./styles/StudentForm.css";
 
 type Props = {
   onCancel: () => void;
@@ -73,24 +74,13 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        background: "#f6fafe",
-        border: "1px solid #ddd",
-        borderRadius: 8,
-        margin: "24px auto",
-        maxWidth: 400,
-        padding: 16,
-      }}
-    >
+    <form className="student-form" onSubmit={handleSubmit}>
       <h2>{student ? "Student bearbeiten" : "Student hinzufügen"}</h2>
       <input
         name="name"
         onChange={handleChange}
         placeholder="Name"
         required
-        style={{ marginBottom: 8, width: "100%" }}
         value={form.name}
       />
       <input
@@ -98,23 +88,14 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         onChange={handleChange}
         placeholder="E-Mail"
         required
-        style={{ marginBottom: 8, width: "100%" }}
         value={form.email}
       />
-      {/*<input
-        name="photoUrl"
-        onChange={handleChange}
-        placeholder="Foto-URL"
-        required
-        style={{ marginBottom: 8, width: "100%" }}
-        value={form.photoUrl}
-      />*/}
+      {/* Foto-URL entfernt */}
       <input
         name="address"
         onChange={handleChange}
         placeholder="Adresse"
         required
-        style={{ marginBottom: 8, width: "100%" }}
         value={form.address}
       />
       <input
@@ -122,7 +103,6 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         onChange={handleChange}
         placeholder="Studiengang"
         required
-        style={{ marginBottom: 8, width: "100%" }}
         value={form.program}
       />
       <input
@@ -130,7 +110,6 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         onChange={handleChange}
         placeholder="Matrikelnummer"
         required
-        style={{ marginBottom: 8, width: "100%" }}
         value={form.matriculationNumber}
       />
       <input
@@ -139,16 +118,10 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         onChange={handleChange}
         placeholder="Semester"
         required
-        style={{ marginBottom: 8, width: "100%" }}
         type="number"
         value={form.semester}
       />
-      <select
-        name="gender"
-        onChange={handleGenderChange}
-        style={{ marginBottom: 8, width: "100%" }}
-        value={form.gender}
-      >
+      <select name="gender" onChange={handleGenderChange} value={form.gender}>
         <option value={Gender.Male}>männlich</option>
         <option value={Gender.Female}>weiblich</option>
         <option value={Gender.Divers}>divers</option>
@@ -156,62 +129,55 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
       </select>
       <h3>Notenspiegel</h3>
       {grades.map((grade, idx) => (
-        <div
-          key={idx}
-          style={{
-            border: "1px solid #eee",
-            borderRadius: 4,
-            marginBottom: 8,
-            padding: 6,
-          }}
-        >
+        <div className="grade-block" key={idx}>
+          <button
+            className="grade-remove-btn"
+            onClick={() => removeGrade(idx)}
+            title="Diesen Kurs entfernen"
+            type="button"
+          >
+            ✖
+          </button>
           <input
             onChange={(e) =>
               handleGradeChange(idx, "courseName", e.target.value)
             }
             placeholder="Kursname"
             required
-            style={{ marginRight: 4, width: "42%" }}
+            type="text"
             value={grade.courseName}
           />
           <input
             onChange={(e) => handleGradeChange(idx, "grade", e.target.value)}
             placeholder="Note"
             required
-            style={{ marginRight: 4, width: "18%" }}
+            type="text"
             value={grade.grade}
           />
           <input
             onChange={(e) => handleGradeChange(idx, "date", e.target.value)}
             required
-            style={{ marginRight: 4, width: "26%" }}
             type="date"
             value={grade.date}
           />
-          <input
-            checked={grade.isPassed}
-            onChange={(e) =>
-              handleGradeChange(idx, "isPassed", e.target.checked)
-            }
-            type="checkbox"
-          />
-          <label> Bestanden</label>{" "}
-          <button
-            onClick={() => removeGrade(idx)}
-            style={{ marginLeft: 4 }}
-            type="button"
-          >
-            🗑️
-          </button>
+          <div className="grade-passed-row">
+            <input
+              checked={grade.isPassed}
+              id={`passed-${idx}`}
+              onChange={(e) =>
+                handleGradeChange(idx, "isPassed", e.target.checked)
+              }
+              type="checkbox"
+            />
+            <label htmlFor={`passed-${idx}`}> Bestanden</label>
+          </div>
         </div>
       ))}
-      <button onClick={addGrade} style={{ marginBottom: 8 }} type="button">
+      <button onClick={addGrade} type="button">
         Kurs hinzufügen
       </button>
-      <div style={{ marginTop: 12 }}>
-        <button style={{ marginRight: 8 }} type="submit">
-          {student ? "Speichern" : "Hinzufügen"}
-        </button>
+      <div className="form-actions">
+        <button type="submit">{student ? "Speichern" : "Hinzufügen"}</button>
         <button onClick={onCancel} type="button">
           Abbrechen
         </button>

@@ -1,6 +1,7 @@
 import React from "react";
 
 import type { Student } from "./types";
+import "./styles/StudentList.css";
 
 type Props = {
   onSelect: (id: number) => void;
@@ -12,41 +13,25 @@ const StudentList: React.FC<Props> = ({ onSelect, selectedId, students }) => (
   <ul style={{ listStyle: "none", paddingLeft: 0 }}>
     {students.map((student) => (
       <li
+        className={
+          "student-list-item" + (selectedId === student.id ? " selected" : "")
+        }
         key={student.id}
         onClick={() => onSelect(student.id)}
-        style={{
-          alignItems: "center",
-          background: selectedId === student.id ? "#e0e0e0" : "transparent",
-          borderRadius: 6,
-          cursor: "pointer",
-          display: "flex",
-          marginBottom: 4,
-          padding: "8px",
-        }}
       >
-        {/* <ProfileImage student={student} />*/}
         <ProfileInfo student={student} />
       </li>
     ))}
   </ul>
 );
 
-/*function ProfileImage({ student }: { student: Student }) {
-  return (
-    <img
-      alt={student.name}
-      height={40}
-      src={student.photoUrl}
-      style={{ borderRadius: "50%", marginRight: 12 }}
-      width={40}
-    />
-  );
-}*/
 function ProfileInfo({ student }: Readonly<{ student: Student }>) {
   return (
-    <span style={{ flex: 1, textAlign: "left" }}>
+    <span className="profile-info">
       <b>{student.name}</b>{" "}
-      <span style={{ color: "#888" }}>({student.matriculationNumber})</span>
+      <span className="matriculation-number">
+        ({student.matriculationNumber})
+      </span>
     </span>
   );
 }

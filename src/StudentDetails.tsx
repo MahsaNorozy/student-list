@@ -1,6 +1,7 @@
 import React from "react";
 
 import type { Student } from "./types";
+import "./styles/StudentDetails.css";
 
 type Props = {
   onEdit: (student: Student) => void;
@@ -8,25 +9,9 @@ type Props = {
 };
 
 const StudentDetails: React.FC<Props> = ({ onEdit, student }) => (
-  <div
-    style={{
-      background: "#fafafa",
-      border: "1px solid #ddd",
-      borderRadius: 8,
-      margin: "24px auto",
-      maxWidth: 400,
-      padding: 16,
-    }}
-  >
-    {/*<img
-      alt={student.name}
-      height={80}
-      src={student.photoUrl}
-      style={{ borderRadius: "50%" }}
-      width={80}
-    />*/}
+  <div className="student-details">
     <h2>{student.name}</h2>
-    <div style={{ margin: "0 auto", maxWidth: 350, textAlign: "left" }}>
+    <div className="student-details-info">
       <div>
         <b>Email:</b> {student.email}
       </div>
@@ -47,15 +32,13 @@ const StudentDetails: React.FC<Props> = ({ onEdit, student }) => (
       </div>
     </div>
     <h3>Notenspiegel</h3>
-    <table
-      style={{ borderCollapse: "collapse", margin: "0 auto", width: "100%" }}
-    >
+    <table className="student-details-table">
       <thead>
         <tr>
-          <th style={{ borderBottom: "1px solid #ccc" }}>Kurs</th>
-          <th style={{ borderBottom: "1px solid #ccc" }}>Note</th>
-          <th style={{ borderBottom: "1px solid #ccc" }}>Datum</th>
-          <th style={{ borderBottom: "1px solid #ccc" }}>Bestanden</th>
+          <th>Kurs</th>
+          <th>Note</th>
+          <th>Datum</th>
+          <th>Bestanden</th>
         </tr>
       </thead>
       <tbody>
@@ -69,7 +52,10 @@ const StudentDetails: React.FC<Props> = ({ onEdit, student }) => (
         ))}
       </tbody>
     </table>
-    <button onClick={() => onEdit(student)} style={{ marginTop: 16 }}>
+    <button
+      className="student-details-edit-btn"
+      onClick={() => onEdit(student)}
+    >
       Bearbeiten
     </button>
   </div>

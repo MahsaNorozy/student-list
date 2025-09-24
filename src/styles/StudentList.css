@@ -1,0 +1,19 @@
+.student-list-item {
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 4px;
+  padding: 8px;
+  transition: background 0.2s;
+}
+.student-list-item.selected {
+  background: #e0e0e0;
+}
+.profile-info {
+  flex: 1;
+  text-align: left;
+}
+.matriculation-number {
+  color: #888;
+}
