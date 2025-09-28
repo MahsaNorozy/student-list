@@ -58,6 +58,31 @@ const initialStudents: Student[] = [
     program: "Maschinenbau",
     semester: 3,
   },
+  {
+    address: "Hauptstraße 5, 10115 München",
+    email: "lisa@beispiel.de",
+    gender: Gender.Female,
+    grades: [
+      {
+        courseName: "Physik",
+        date: "2024-04-10",
+        grade: "1.7",
+        isPassed: true,
+      },
+      {
+        courseName: "Mathe 2",
+        date: "2024-04-15",
+        grade: "2.3",
+        isPassed: true,
+      },
+    ],
+    id: 3,
+    matriculationNumber: "3456789",
+    name: "Lisa König",
+    photoUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+    program: "Elektrotechnik",
+    semester: 1,
+  },
 ];
 
 const universityLogo =
