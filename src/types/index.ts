@@ -3,7 +3,7 @@ import { Gender } from "./Gender";
 export type Grade = {
   courseName: string;
   date: string; // ISO-Format
-  grade: string;
+  gradeValue: string;
   isPassed: boolean;
 };
 export type Student = {
@@ -14,7 +14,6 @@ export type Student = {
   id: number;
   matriculationNumber: string;
   name: string;
-  photoUrl: string;
   program: string;
   semester: number;
 };

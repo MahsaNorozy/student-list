@@ -1,39 +1,93 @@
+import { ADD_STUDENT, UPDATE_STUDENT } from "./graphql/mutations";
+import { GET_STUDENT, GET_STUDENTS } from "./graphql/queries";
 import { Gender } from "./types/Gender";
-import React, { useState } from "react";
+import { stripTypenameDeep } from "./utils/clean";
+import "./styles/StudentForm.css";
+import { useMutation, useQuery } from "@apollo/client/react";
+import React, { useEffect, useState } from "react";
 
 import type { Grade, Student } from "./types";
-import "./styles/StudentForm.css";
 
 type Props = {
   onCancel: () => void;
-  onSave: (student: Student) => void;
-  student: null | Student;
+  onSaved?: () => void;
+  studentId: null | number; // null => Add, Zahl => Edit
 };
 
+export const GenderLabel: Record<Gender, string> = {
+  [Gender.Divers]: "divers",
+  [Gender.Female]: "weiblich",
+  [Gender.Male]: "männlich",
+  [Gender.Unknown]: "Unbekannt",
+};
+
+// --- Form-Model ---
 const emptyGrade: Grade = {
   courseName: "",
   date: "",
-  grade: "",
+  gradeValue: "",
   isPassed: false,
 };
 
-const emptyStudent: Omit<Student, "id"> = {
+type FormShape = Omit<Student, "id">; // entspricht Typ ohne id
+
+const emptyStudent: FormShape = {
   address: "",
   email: "",
   gender: Gender.Unknown,
   grades: [],
   matriculationNumber: "",
   name: "",
-  photoUrl: "",
   program: "",
   semester: 1,
 };
 
-const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
-  const [form, setForm] = useState<Omit<Student, "id">>(
-    student ? { ...student } : emptyStudent
-  );
-  const [grades, setGrade] = useState<Grade[]>(student ? student.grades : []);
+const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
+  const isEdit = !!studentId;
+
+  // Daten fürs Edit laden
+  const { data: editData } = useQuery<{ student: Student }>(GET_STUDENT, {
+    skip: !isEdit,
+    variables: { id: studentId! },
+  });
+
+  const [form, setForm] = useState<FormShape>(emptyStudent);
+  const [grades, setGrades] = useState<Grade[]>([]);
+
+  /*useEffect(() => {
+    if (isEdit && editData?.student) {
+      const { id, ...rest } = editData.student;
+      setForm(rest);
+      setGrades(editData.student.grades ?? []);
+    } else if (!isEdit) {
+      setForm(emptyStudent);
+      setGrades([]);
+    }
+  }, [isEdit, editData]);*/
+
+  useEffect(() => {
+    if (isEdit && editData?.student) {
+      const { id, ...rest } = editData.student;
+      // direkt bereinigt in den State
+      setForm(stripTypenameDeep(rest));
+      setGrades(stripTypenameDeep(editData.student.grades) as Grade[]);
+    } else if (!isEdit) {
+      setForm(emptyStudent);
+      setGrades([]);
+    }
+  }, [isEdit, editData]);
+
+  const [addStudent, { loading: adding }] = useMutation(ADD_STUDENT, {
+    refetchQueries: [{ query: GET_STUDENTS }], // Liste neu laden
+  });
+
+  const [updateStudent, { loading: updating }] = useMutation(UPDATE_STUDENT, {
+    awaitRefetchQueries: true,
+    refetchQueries: [
+      { query: GET_STUDENTS },
+      { query: GET_STUDENT, variables: { id: studentId } },
+    ],
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -55,27 +109,54 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
     field: keyof Grade,
     value: boolean | string
   ) => {
-    setGrade((prev) =>
+    setGrades((prev) =>
       prev.map((g, i) => (i === idx ? { ...g, [field]: value } : g))
     );
   };
 
-  const addGrade = () => setGrade([...grades, { ...emptyGrade }]);
-  const removeGrade = (idx: number) =>
-    setGrade(grades.filter((_, i) => i !== idx));
+  const addGrade = () => setGrades([...grades, { ...emptyGrade }]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const removeGrade = (idx: number) =>
+    setGrades(grades.filter((_, i) => i !== idx));
+
+  /*const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({
-      ...(student ? { id: student.id } : {}),
+
+    const input = { ...form, grades };
+    if (isEdit) {
+      await updateStudent({ variables: { id: studentId, input } });
+    } else {
+      await addStudent({ variables: { input } });
+    }
+    onSaved?.();
+  };*/
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // falls man Gender mappt, hier vorher mappen:
+    // const gender = toGqlGender(form.gender);
+
+    const rawInput = {
       ...form,
+      // gender, // falls man mappt; sonst form.gender
       grades,
-    } as Student);
+    };
+
+    const input = stripTypenameDeep(rawInput);
+
+    if (isEdit) {
+      await updateStudent({ variables: { id: studentId, input } });
+    } else {
+      await addStudent({ variables: { input } });
+    }
+    onSaved?.();
   };
 
   return (
     <form className="student-form" onSubmit={handleSubmit}>
-      <h2>{student ? "Student bearbeiten" : "Student hinzufügen"}</h2>
+      <h2>{isEdit ? "Student bearbeiten" : "Student hinzufügen"}</h2>
+
       <input
         name="name"
         onChange={handleChange}
@@ -90,7 +171,6 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         required
         value={form.email}
       />
-      {/* Foto-URL entfernt */}
       <input
         name="address"
         onChange={handleChange}
@@ -121,13 +201,16 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
         type="number"
         value={form.semester}
       />
+
       <select name="gender" onChange={handleGenderChange} value={form.gender}>
-        <option value={Gender.Male}>männlich</option>
-        <option value={Gender.Female}>weiblich</option>
-        <option value={Gender.Divers}>divers</option>
-        <option value={Gender.Unknown}>Unbekannt</option>
+        <option value={Gender.Male}>{GenderLabel[Gender.Male]}</option>
+        <option value={Gender.Female}>{GenderLabel[Gender.Female]}</option>
+        <option value={Gender.Divers}>{GenderLabel[Gender.Divers]}</option>
+        <option value={Gender.Unknown}>{GenderLabel[Gender.Unknown]}</option>
       </select>
+
       <h3>Notenspiegel</h3>
+
       {grades.map((grade, idx) => (
         <div className="grade-block" key={idx}>
           <button
@@ -138,6 +221,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
           >
             ✖
           </button>
+
           <input
             onChange={(e) =>
               handleGradeChange(idx, "courseName", e.target.value)
@@ -147,19 +231,24 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
             type="text"
             value={grade.courseName}
           />
+
           <input
-            onChange={(e) => handleGradeChange(idx, "grade", e.target.value)}
+            onChange={(e) =>
+              handleGradeChange(idx, "gradeValue", e.target.value)
+            }
             placeholder="Note"
             required
             type="text"
-            value={grade.grade}
+            value={grade.gradeValue}
           />
+
           <input
             onChange={(e) => handleGradeChange(idx, "date", e.target.value)}
             required
             type="date"
             value={grade.date}
           />
+
           <div className="grade-passed-row">
             <input
               checked={grade.isPassed}
@@ -173,13 +262,18 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSave, student }) => {
           </div>
         </div>
       ))}
+
       <div className="add-grade-row">
         <button onClick={addGrade} type="button">
           Note hinzufügen
         </button>
       </div>
+
       <div className="form-actions">
-        <button type="submit">{student ? "Speichern" : "Hinzufügen"}</button>
+        <button disabled={adding || updating} type="submit">
+          {isEdit ? "Speichern" : "Hinzufügen"}
+        </button>
+
         <button onClick={onCancel} type="button">
           Abbrechen
         </button>

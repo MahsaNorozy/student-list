@@ -1,131 +1,35 @@
 import StudentDetails from "./StudentDetails";
 import StudentForm from "./StudentForm";
 import StudentList from "./StudentList";
-import { Gender } from "./types/Gender";
 import React, { useState } from "react";
-
-import type { Student } from "./types";
 import "./styles/App.css";
-
-const initialStudents: Student[] = [
-  {
-    address: "Musterstraße 1, 12345 Berlin",
-    email: "anna@beispiel.de",
-    gender: Gender.Female,
-    grades: [
-      {
-        courseName: "Mathe 1",
-        date: "2024-02-10",
-        grade: "1.3",
-        isPassed: true,
-      },
-      {
-        courseName: "Programmierung",
-        date: "2024-02-15",
-        grade: "2.0",
-        isPassed: true,
-      },
-    ],
-    id: 1,
-    matriculationNumber: "1234567",
-    name: "Anna Schmidt",
-    photoUrl: "https://randomuser.me/api/portraits/women/1.jpg",
-    program: "Informatik",
-    semester: 2,
-  },
-  {
-    address: "Beispielweg 2, 54321 Hamburg",
-    email: "max@beispiel.de",
-    gender: Gender.Male,
-    grades: [
-      {
-        courseName: "Mechanik",
-        date: "2024-03-12",
-        grade: "2.3",
-        isPassed: true,
-      },
-      {
-        courseName: "Mathe 1",
-        date: "2024-03-18",
-        grade: "4.0",
-        isPassed: false,
-      },
-    ],
-    id: 2,
-    matriculationNumber: "2345678",
-    name: "Max Müller",
-    photoUrl: "https://randomuser.me/api/portraits/men/2.jpg",
-    program: "Maschinenbau",
-    semester: 3,
-  },
-  {
-    address: "Hauptstraße 5, 10115 München",
-    email: "lisa@beispiel.de",
-    gender: Gender.Female,
-    grades: [
-      {
-        courseName: "Physik",
-        date: "2024-04-10",
-        grade: "1.7",
-        isPassed: true,
-      },
-      {
-        courseName: "Mathe 2",
-        date: "2024-04-15",
-        grade: "2.3",
-        isPassed: true,
-      },
-    ],
-    id: 3,
-    matriculationNumber: "3456789",
-    name: "Lisa König",
-    photoUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-    program: "Elektrotechnik",
-    semester: 1,
-  },
-];
 
 const universityLogo =
   "https://static.vecteezy.com/ti/gratis-vektor/p3/4851939-uni-logo-oder-bildung-logo-konzept-illustration-uni-logo-design-vorlage-vektor.jpg";
 
 const App: React.FC = () => {
-  const [students, setStudents] = useState<Student[]>(initialStudents);
   const [selectedStudentId, setSelectedStudentId] = useState<null | number>(
     null
   );
-  const [editingStudent, setEditingStudent] = useState<null | Student>(null);
+  const [editingStudentId, setEditingStudentId] = useState<null | number>(null);
   const [showForm, setShowForm] = useState(false);
 
   const handleSelectStudent = (id: number) => {
     setSelectedStudentId(id);
     setShowForm(false);
-    setEditingStudent(null);
+    setEditingStudentId(null);
   };
 
   const handleAddStudent = () => {
     setShowForm(true);
-    setEditingStudent(null);
+    setEditingStudentId(null); // Neuer Student
     setSelectedStudentId(null);
   };
 
-  const handleEditStudent = (student: Student) => {
-    setEditingStudent(student);
+  const handleEditStudent = (id: number) => {
+    setEditingStudentId(id); // Bestehender Student
     setShowForm(true);
     setSelectedStudentId(null);
-  };
-
-  const handleSaveStudent = (student: Student) => {
-    if (student.id) {
-      setStudents((students) =>
-        students.map((s) => (s.id === student.id ? student : s))
-      );
-    } else {
-      const newId =
-        students.length > 0 ? Math.max(...students.map((s) => s.id)) + 1 : 1;
-      setStudents([...students, { ...student, id: newId }]);
-    }
-    setShowForm(false);
-    setEditingStudent(null);
   };
 
   return (
@@ -134,28 +38,34 @@ const App: React.FC = () => {
         <img alt="Uni Logo" className="app-logo" src={universityLogo} />
         <h1>Studentenverwaltung</h1>
       </header>
+
       <button className="app-add-btn" onClick={handleAddStudent}>
         Student hinzufügen
       </button>
+
       <StudentList
         onSelect={handleSelectStudent}
         selectedId={selectedStudentId}
-        students={students}
       />
+
       {showForm && (
         <StudentForm
           onCancel={() => {
             setShowForm(false);
-            setEditingStudent(null);
+            setEditingStudentId(null);
           }}
-          onSave={handleSaveStudent}
-          student={editingStudent}
+          onSaved={() => {
+            setShowForm(false);
+            setEditingStudentId(null);
+          }}
+          studentId={editingStudentId} //  optional ID, sonst "Add"
         />
       )}
+
       {selectedStudentId && (
         <StudentDetails
           onEdit={handleEditStudent}
-          student={students.find((s) => s.id === selectedStudentId)!}
+          studentId={selectedStudentId} // nur ID übergeben
         />
       )}
     </div>
