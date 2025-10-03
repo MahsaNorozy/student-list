@@ -110,24 +110,18 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // falls man Gender mappt, hier vorher mappen:
-    // const gender = toGqlGender(form.gender);
-
-    const rawInput = {
-      ...form,
-      // gender, // falls man mappt; sonst form.gender
-      grades,
-    };
-
-    const input = stripTypenameDeep(rawInput);
-
-    if (isEdit) {
-      await updateStudent({ variables: { id: studentId, input } });
-    } else {
-      await addStudent({ variables: { input } });
+    try {
+      const input = stripTypenameDeep({ ...form, grades });
+      if (isEdit) {
+        await updateStudent({ variables: { id: studentId, input } });
+      } else {
+        await addStudent({ variables: { input } });
+      }
+      onSaved?.();
+    } catch (err) {
+      console.error(err);
+      alert("Speichern fehlgeschlagen.");
     }
-    onSaved?.();
   };
 
   return (
