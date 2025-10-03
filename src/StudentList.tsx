@@ -12,7 +12,6 @@ type GetStudentsData = {
 type Props = {
   onSelect: (id: number) => void;
   selectedId: null | number;
-  //students: Student[];
 };
 
 const StudentList: React.FC<Props> = ({ onSelect, selectedId }) => {
@@ -34,7 +33,7 @@ const StudentList: React.FC<Props> = ({ onSelect, selectedId }) => {
   const students = data?.students ?? [];
 
   return (
-    <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+    <ul className="student-list">
       {students.map((student) => (
         <li
           className={

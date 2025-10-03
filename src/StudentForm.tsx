@@ -54,17 +54,6 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   const [form, setForm] = useState<FormShape>(emptyStudent);
   const [grades, setGrades] = useState<Grade[]>([]);
 
-  /*useEffect(() => {
-    if (isEdit && editData?.student) {
-      const { id, ...rest } = editData.student;
-      setForm(rest);
-      setGrades(editData.student.grades ?? []);
-    } else if (!isEdit) {
-      setForm(emptyStudent);
-      setGrades([]);
-    }
-  }, [isEdit, editData]);*/
-
   useEffect(() => {
     if (isEdit && editData?.student) {
       const { id, ...rest } = editData.student;
@@ -118,18 +107,6 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
 
   const removeGrade = (idx: number) =>
     setGrades(grades.filter((_, i) => i !== idx));
-
-  /*const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const input = { ...form, grades };
-    if (isEdit) {
-      await updateStudent({ variables: { id: studentId, input } });
-    } else {
-      await addStudent({ variables: { input } });
-    }
-    onSaved?.();
-  };*/
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
