@@ -1,18 +1,21 @@
+import BackButton from "../components/BackButton";
 import StudentDetails from "../components/StudentDetails";
-import { useNavigate, useParams } from "react-router-dom";
+import { useStudentIdParam } from "../hooks/useStudentIdParam";
+import { useStudentNavigation } from "../hooks/useStudentNavigation";
 
 export default function StudentDetailPage() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  if (!id) return null;
+  const studentId = useStudentIdParam();
+  const { goToEdit } = useStudentNavigation();
+  if (studentId === null) return <div>404 – Not Found</div>;
 
   return (
     <div>
-      <button onClick={() => navigate("/students")}>⬅️ Zurück</button>
+      <BackButton />
+
       <StudentDetails
-        onEdit={(sid) => navigate(`/students/${sid}/edit`)}
-        studentId={Number(id)}
-      />{" "}
+        onEdit={() => goToEdit(studentId)}
+        studentId={studentId}
+      />
     </div>
   );
 }

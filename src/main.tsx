@@ -1,5 +1,5 @@
 import client from "./apolloClient";
-import AppLayout from "./App";
+import App from "./App";
 import StudentDetailPage from "./pages/StudentDetailPage";
 import StudentEditPage from "./pages/StudentEditPage";
 import StudentsPage from "./pages/StudentsPage";
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { element: <StudentEditPage />, path: "students/:id/edit" },
       { element: <div>404 – Not Found</div>, path: "*" },
     ],
-    element: <AppLayout />,
+    element: <App />,
     path: "/",
   },
 ]);

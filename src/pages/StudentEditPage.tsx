@@ -1,18 +1,20 @@
+import BackButton from "../components/BackButton";
 import StudentForm from "../components/StudentForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { useStudentIdParam } from "../hooks/useStudentIdParam";
+import { useStudentNavigation } from "../hooks/useStudentNavigation";
 
 export default function StudentEditPage() {
-  const { id } = useParams<{ id?: string }>();
-  const navigate = useNavigate();
+  const studentId = useStudentIdParam();
+  const { goToList } = useStudentNavigation();
 
   return (
     <div>
-      <button onClick={() => navigate("/students")}>⬅️ Zurück</button>
+      <BackButton />
 
       <StudentForm
-        onCancel={() => navigate("/students")}
-        onSaved={() => navigate("/students")}
-        studentId={id ? Number(id) : null}
+        onCancel={goToList}
+        onSaved={goToList}
+        studentId={studentId} // null => "Neues" Formular, Zahl => "Bearbeiten" Formular
       />
     </div>
   );
