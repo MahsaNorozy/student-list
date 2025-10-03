@@ -1,4 +1,4 @@
-import StudentList from "../components/StudentList";
+import StudentList from "../components/StudentList/StudentList";
 import { useNavigate } from "react-router-dom";
 
 export default function StudentsPage() {

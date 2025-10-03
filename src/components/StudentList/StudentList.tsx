@@ -1,9 +1,9 @@
-import { GET_STUDENTS } from "../graphql/queries";
+import { GET_STUDENTS } from "../../graphql/queries";
 import { useQuery } from "@apollo/client/react";
-import "../styles/StudentList.css";
+import "./StudentList.css";
 import React from "react";
 
-import type { Student } from "../types";
+import type { Student } from "../../types";
 
 // Typ für das Query-Ergebnis:
 type GetStudentsData = {
