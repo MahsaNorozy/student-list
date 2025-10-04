@@ -1,4 +1,4 @@
-import { Gender } from "./Gender";
+import { Gender } from "./gender";
 
 export type Grade = {
   courseName: string;

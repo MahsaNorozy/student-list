@@ -1,12 +1,12 @@
-import { ADD_STUDENT, UPDATE_STUDENT } from "../../../graphql/mutations";
-import { GET_STUDENT, GET_STUDENTS } from "../../../graphql/queries";
-import { Gender } from "../../../types/gender";
-import { stripTypenameDeep } from "../../../utils/clean";
+import { ADD_STUDENT, UPDATE_STUDENT } from "../../graphql/mutations";
+import { GET_STUDENT, GET_STUDENTS } from "../../graphql/queries";
+import { Gender } from "../../types/gender";
+import { stripTypenameDeep } from "../../utils/clean";
 import "./StudentForm.css";
 import { useMutation, useQuery } from "@apollo/client/react";
 import React, { useEffect, useState } from "react";
 
-import type { Grade, Student } from "../../../types";
+import type { Grade, Student } from "../../types";
 
 type Props = {
   onCancel: () => void;
