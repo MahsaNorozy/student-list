@@ -1,9 +1,9 @@
-import { GET_STUDENT } from "../../graphql/queries";
+import { GET_STUDENT } from "../../../graphql/queries";
 import { useQuery } from "@apollo/client/react";
 import React from "react";
 import "./StudentDetails.css";
 
-import type { Student } from "../../types";
+import type { Student } from "../../../types";
 
 type Props = {
   onEdit: (id: number) => void;

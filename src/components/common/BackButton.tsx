@@ -1,4 +1,4 @@
-import { useStudentNavigation } from "../hooks/useStudentNavigation";
+import { useStudentNavigation } from "../../hooks/useStudentNavigation";
 
 export default function BackButton({ toList = true }: { toList?: boolean }) {
   const { goBack, goToList } = useStudentNavigation();

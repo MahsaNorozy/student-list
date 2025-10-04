@@ -1,5 +1,5 @@
-import BackButton from "../components/BackButton";
-import StudentForm from "../components/StudentForm/StudentForm";
+import BackButton from "../components/common/BackButton";
+import StudentForm from "../components/student/StudentForm/StudentForm";
 import { useStudentIdParam } from "../hooks/useStudentIdParam";
 import { useStudentNavigation } from "../hooks/useStudentNavigation";
 
