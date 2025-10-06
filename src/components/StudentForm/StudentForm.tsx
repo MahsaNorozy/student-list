@@ -43,7 +43,7 @@ const emptyStudent: FormShape = {
 };
 
 const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
-  const isEdit = !!studentId;
+  const isEdit = studentId !== null;
 
   // Daten fürs Edit laden
   const { data: editData } = useQuery<{ student: Student }>(GET_STUDENT, {
