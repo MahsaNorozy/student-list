@@ -1,57 +1,38 @@
-[![Quality Gate Status](http://localhost:9000/api/project_badges/measure?project=student-list&metric=alert_status)](http://localhost:9000/dashboard?id=student-list)
+# Studentenverwaltung
 
+Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
 
-# React + TypeScript + Vite
+## Funktionen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Studentenliste anzeigen
+- Neue Studenten mit Noten hinzufügen
+- Studenten und ihre Noten bearbeiten
 
-Currently, two official plugins are available:
+## Technologie-Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Frontend: React, TypeScript, Vite
+- Backend: ASP.NET Core Web API, SQLite, GraphQL
 
-## Expanding the ESLint configuration
+## Projekt starten
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Backend starten**
+   - Wechsle in das Backend-Projektverzeichnis (`student-list-backend`)
+   - Baue das Projekt:
+     ```
+     dotnet build
+     ```
+   - Starte das Backend:
+     ```
+     dotnet run
+     ```
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. **Frontend starten**
+   - Wechsle in das Frontend-Verzeichnis (`student-list`)
+   - Starte die Anwendung:
+     ```
+     npm run dev
+     ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Hinweise
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Die Anwendung verwendet eine **GraphQL-API** für die Kommunikation zwischen Frontend und Backend.
