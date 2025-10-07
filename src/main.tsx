@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       { element: <StudentEditPage />, path: "students/new" },
       { element: <StudentDetailPage />, path: "students/:id" },
       { element: <StudentEditPage />, path: "students/:id/edit" },
-      { element: <div>404 – Not Found</div>, path: "*" },
+      { element: <div>404 – Nicht gefunden</div>, path: "*" },
     ],
     element: <App />,
     path: "/",

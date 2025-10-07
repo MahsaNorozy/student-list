@@ -19,7 +19,7 @@ import { useParams } from "react-router-dom";
  * // Zeigt 404 an, wenn die ID fehlt oder ungültig ist.
  * const studentId = useStudentIdParam();
  * if (studentId === null) {
- *   return <div>404 – Not Found</div>;
+ *   return <div>404 - Nicht gefunden</div>;
  * }
  * return <StudentDetails studentId={studentId} />;
  * ```
