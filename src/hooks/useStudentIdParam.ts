@@ -1,33 +1,37 @@
 import { useParams } from "react-router-dom";
 
 /**
- * useStudentIdParam
- *
- * Liest die Studenten-ID (`:id`) aus der aktuellen Route und gibt sie als `number` zurück,
+ * Liest die Studenten-ID (`:id`) aus der aktuellen Route und gibt sie als Zahl zurück,
  * sofern eine gültige dezimale ID vorhanden ist. Andernfalls wird `null` zurückgegeben.
  *
+ * @remarks
+ * Dieser Hook wird in `StudentDetailPage` und `StudentEditPage` verwendet,
+ * um die ID aus der URL zu extrahieren.
  * Typische Routen:
- *   - `/students/:id` → `StudentDetailPage`
- *   - `/students/:id/edit` → `StudentEditPage`
+ *   - `/students/:id`
+ *   - `/students/:id/edit`
  *
- * Verwendung:
- *   - **StudentDetailPage**: `null` ⇒ 404 / Not Found
- *   - **StudentEditPage**: `null` ⇒ „Neuer Student“, Zahl ⇒ „Bearbeiten“
- *
- * @returns `number | null` — die extrahierte ID als Zahl oder `null`, wenn keine gültige ID vorhanden ist.
+ * @returns Die extrahierte ID als Zahl oder `null`, wenn keine gültige ID vorhanden ist.
  *
  * @example
- * // StudentDetailPage: bei fehlender/ungültiger ID 404 anzeigen
+ * Beispiel für die Verwendung in dem StudentDetailPage:
+ * ```
+ * // Zeigt 404 an, wenn die ID fehlt oder ungültig ist.
  * const studentId = useStudentIdParam();
  * if (studentId === null) {
  *   return <div>404 – Not Found</div>;
  * }
  * return <StudentDetails studentId={studentId} />;
+ * ```
  *
  * @example
- * // StudentEditPage: null ⇒ neues Formular, Zahl ⇒ bestehender Student
+ * Beispiel für die Verwendung in dem StudentEditPage:
+ * ```
+ * // Zeigt ein neues Formular an, wenn die ID null ist,
+ * // oder bearbeitet einen bestehenden Studenten, wenn die ID eine Zahl ist.
  * const studentId = useStudentIdParam();
  * return <StudentForm studentId={studentId} />;
+ * ```
  */
 
 export function useStudentIdParam() {

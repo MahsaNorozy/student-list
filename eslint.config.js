@@ -5,7 +5,7 @@ import tsdoc from "eslint-plugin-tsdoc";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-/** @type {import('eslint').Linter.Config[]} */
+// @type {import('eslint').Linter.Config[]}
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   pluginJs.configs.recommended,
@@ -89,6 +89,11 @@ export default [
       ],
       "react/react-in-jsx-scope": "off",
       "tsdoc/syntax": "warn",
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
   },
 ];
