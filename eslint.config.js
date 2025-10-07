@@ -1,6 +1,7 @@
 import pluginJs from "@eslint/js";
 import perfectionist from "eslint-plugin-perfectionist";
 import pluginReact from "eslint-plugin-react";
+import tsdoc from "eslint-plugin-tsdoc";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -9,11 +10,15 @@ export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended, // recommended rules for code correctness that you can drop in without additional configuration. These rules are those whose reports are almost always for a bad practice and/or likely bug. recommended also disables core ESLint rules known to conflict with typescript-eslint rules or cause issues in TypeScript codebases.
-
   pluginReact.configs.flat.recommended,
   perfectionist.configs["recommended-natural"],
   {
     languageOptions: { globals: globals.browser },
+
+    plugins: {
+      tsdoc,
+    },
+
     rules: {
       "@typescript-eslint/ban-ts-comment": "warn",
       "@typescript-eslint/consistent-generic-constructors": "error",
@@ -83,6 +88,7 @@ export default [
         },
       ],
       "react/react-in-jsx-scope": "off",
+      "tsdoc/syntax": "warn",
     },
   },
 ];
