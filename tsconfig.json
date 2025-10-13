@@ -3,16 +3,5 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ],
-  "compilerOptions": {
-    "strict": true, // Enables all strict type-checking options.
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ESNext",
-    "types": ["jest", "@testing-library/jest-dom"],
-    "esModuleInterop": true
-  }
+  ]
 }
