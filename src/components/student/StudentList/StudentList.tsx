@@ -6,13 +6,13 @@ import React from "react";
 import type { Student } from "../../../types";
 
 // Typ für das Query-Ergebnis:
-type GetStudentsData = {
-  students: Array<Pick<Student, "id" | "matriculationNumber" | "name">>;
-};
-type Props = {
+interface GetStudentsData {
+  students: Pick<Student, "id" | "matriculationNumber" | "name">[];
+}
+interface Props {
   onSelect: (id: number) => void;
   selectedId: null | number;
-};
+}
 
 const StudentList: React.FC<Props> = ({ onSelect, selectedId }) => {
   const { data, error, loading } = useQuery<GetStudentsData>(GET_STUDENTS);

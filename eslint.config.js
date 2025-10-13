@@ -1,4 +1,4 @@
-import pluginJs from "@eslint/js";
+import eslint from "@eslint/js";
 import perfectionist from "eslint-plugin-perfectionist";
 import pluginReact from "eslint-plugin-react";
 import tsdoc from "eslint-plugin-tsdoc";
@@ -8,8 +8,9 @@ import tseslint from "typescript-eslint";
 // @type {import('eslint').Linter.Config[]}
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended, // recommended rules for code correctness that you can drop in without additional configuration. These rules are those whose reports are almost always for a bad practice and/or likely bug. recommended also disables core ESLint rules known to conflict with typescript-eslint rules or cause issues in TypeScript codebases.
+  eslint.configs.recommended,
+  ...tseslint.configs.strict,
+  ...tseslint.configs.stylistic,
   pluginReact.configs.flat.recommended,
   perfectionist.configs["recommended-natural"],
   {

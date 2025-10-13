@@ -5,10 +5,10 @@ import "./StudentDetails.css";
 
 import type { Student } from "../../../types";
 
-type Props = {
+interface Props {
   onEdit: (id: number) => void;
   studentId: number;
-};
+}
 
 const StudentDetails: React.FC<Props> = ({ onEdit, studentId }) => {
   const { data, error, loading } = useQuery<{ student: Student }>(GET_STUDENT, {

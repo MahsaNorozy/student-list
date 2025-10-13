@@ -8,11 +8,11 @@ import React, { useEffect, useState } from "react";
 
 import type { Grade, Student } from "../../../types";
 
-type Props = {
+interface Props {
   onCancel: () => void;
   onSaved?: () => void;
   studentId: null | number; // null => Add, Zahl => Edit
-};
+}
 
 export const GenderLabel: Record<Gender, string> = {
   [Gender.Divers]: "divers",

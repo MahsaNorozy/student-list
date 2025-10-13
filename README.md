@@ -36,3 +36,8 @@ Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
 ## Hinweise
 
 - Die Anwendung verwendet eine **GraphQL-API** für die Kommunikation zwischen Frontend und Backend.
+- Der Quellcode ist mit **TSDoc**-Kommentaren dokumentiert. Um die TSDoc-Kommentare zu prüfen, kann folgender Befehl im Projektverzeichnis ausgeführt werden:
+
+```
+npx eslint .
+```

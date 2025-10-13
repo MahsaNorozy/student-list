@@ -1,12 +1,12 @@
 import { Gender } from "./gender";
 
-export type Grade = {
+export interface Grade {
   courseName: string;
   date: string; // ISO-Format
   gradeValue: string;
   isPassed: boolean;
-};
-export type Student = {
+}
+export interface Student {
   address: string;
   email: string;
   gender: Gender;
@@ -16,4 +16,4 @@ export type Student = {
   name: string;
   program: string;
   semester: number;
-};
+}
