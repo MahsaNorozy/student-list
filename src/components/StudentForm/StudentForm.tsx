@@ -45,9 +45,17 @@ const emptyStudent: FormShape = {
 const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   const isEdit = studentId !== null;
 
-  // Daten fürs Edit laden
+  // Führt eine GraphQL-Abfrage aus, um Studentendaten zu laden
+  // Der Query (GET_STUDENT) ist in einer separaten Datei definiert und enthält die GraphQL-Abfrage
+  // Beispiel: query GetStudent($id: Int!) { student(id: $id) { name, email, address } }
   const { data: editData } = useQuery<{ student: Student }>(GET_STUDENT, {
+    // Überspringt die Abfrage, wenn sich die Komponente nicht im Bearbeitungsmodus befindet (isEdit = false)
     skip: !isEdit,
+
+    // Variablen, die an die GraphQL-Abfrage übergeben werden
+    // Hier wird geprüft, ob studentId einen gültigen Wert besitzt:
+    // - Wenn ja, wird { id: studentId } übergeben
+    // - Wenn nein, wird undefined übergeben (keine Abfrage)
     variables: studentId !== null ? { id: studentId } : undefined,
   });
 
