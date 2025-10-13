@@ -1,4 +1,4 @@
-import logo from "./assets/logo.png";
+import logo from "./assets/Logo.png";
 import React from "react";
 import "./styles/App.css";
 import { Outlet } from "react-router-dom";

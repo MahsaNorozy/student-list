@@ -41,3 +41,5 @@ Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
 ```
 npx eslint .
 ```
+
+npm test to test with jest https://jestjs.io/docs/getting-started
