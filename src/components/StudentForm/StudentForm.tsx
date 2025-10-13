@@ -8,11 +8,11 @@ import React, { useEffect, useState } from "react";
 
 import type { Grade, Student } from "../../types";
 
-type Props = {
+interface Props {
   onCancel: () => void;
   onSaved?: () => void;
   studentId: null | number; // null => Add, Zahl => Edit
-};
+}
 
 export const GenderLabel: Record<Gender, string> = {
   [Gender.Divers]: "divers",
@@ -48,7 +48,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   // Daten fürs Edit laden
   const { data: editData } = useQuery<{ student: Student }>(GET_STUDENT, {
     skip: !isEdit,
-    variables: { id: studentId! },
+    variables: studentId !== null ? { id: studentId } : undefined,
   });
 
   const [form, setForm] = useState<FormShape>(emptyStudent);

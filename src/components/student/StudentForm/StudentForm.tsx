@@ -48,7 +48,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   // Daten fürs Edit laden
   const { data: editData } = useQuery<{ student: Student }>(GET_STUDENT, {
     skip: !isEdit,
-    variables: { id: studentId! },
+    variables: studentId != null ? { id: studentId } : undefined,
   });
 
   const [form, setForm] = useState<FormShape>(emptyStudent);
