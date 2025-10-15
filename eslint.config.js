@@ -14,7 +14,13 @@ export default [
   pluginReact.configs.flat.recommended,
   perfectionist.configs["recommended-natural"],
   {
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.vitest, // macht test/expect/describe etc. bekannt
+      },
+    },
 
     plugins: {
       tsdoc,
@@ -38,6 +44,7 @@ export default [
         },
       ],
       "no-tabs": "error",
+      "no-undef": "off",
       "no-unused-expressions": "off",
       "perfectionist/sort-imports": [
         "error",
