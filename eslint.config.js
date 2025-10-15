@@ -24,6 +24,7 @@ export default [
 
     plugins: {
       tsdoc,
+      vitest,
     },
 
     rules: {
@@ -97,6 +98,9 @@ export default [
       ],
       "react/react-in-jsx-scope": "off",
       "tsdoc/syntax": "warn",
+      "vitest/expect-expect": "warn", // Stellt sicher, dass jeder Test mindestens ein „expect“ enthält
+      "vitest/no-identical-title": "error", // Verhindert doppelte Testnamen
+      "vitest/no-focused-tests": "error", // Verhindert versehentliches Belassen von test.only oder describe.only
     },
     settings: {
       react: {
