@@ -42,9 +42,10 @@ Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
 npx eslint .
 ```
 
-https://jestjs.io/docs/getting-started
-npm test to test
+## Tests und Testabdeckung
 
-npm run test:coverage
-und dann bekommst man eine Ausgabe mit Prozentzahlen zur Testabdeckung.
-zeigt dann zusätzlich den Coverage-Bericht (Text im Terminal + HTML-Report im Ordner coverage/).
+- Das Projekt verwendet **Vitest** für Unit-Tests.
+- Um alle Tests auszuführen, verwende im Projektverzeichnis:
+  ```
+  npm test
+  ```
