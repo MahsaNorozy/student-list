@@ -1,16 +1,17 @@
 import eslint from "@eslint/js";
+import tseslint from "@typescript-eslint/eslint-plugin";
 import perfectionist from "eslint-plugin-perfectionist";
 import pluginReact from "eslint-plugin-react";
 import tsdoc from "eslint-plugin-tsdoc";
+import vitest from "eslint-plugin-vitest";
 import globals from "globals";
-import tseslint from "typescript-eslint";
 
 // @type {import('eslint').Linter.Config[]}
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   eslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
+  ...tseslint.configs["flat/strict"],
+  ...tseslint.configs["flat/stylistic"],
   pluginReact.configs.flat.recommended,
   perfectionist.configs["recommended-natural"],
   {
@@ -18,7 +19,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.vitest, // macht test/expect/describe etc. bekannt
+        ...vitest.globals, // macht test/expect/describe etc. bekannt
       },
     },
 
@@ -99,8 +100,8 @@ export default [
       "react/react-in-jsx-scope": "off",
       "tsdoc/syntax": "warn",
       "vitest/expect-expect": "warn", // Stellt sicher, dass jeder Test mindestens ein „expect“ enthält
-      "vitest/no-identical-title": "error", // Verhindert doppelte Testnamen
       "vitest/no-focused-tests": "error", // Verhindert versehentliches Belassen von test.only oder describe.only
+      "vitest/no-identical-title": "error", // Verhindert doppelte Testnamen
     },
     settings: {
       react: {
