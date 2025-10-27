@@ -1,4 +1,4 @@
-student-list {
+.student-list {
   list-style: none;
   padding-left: 0;
 }
@@ -20,4 +20,37 @@ student-list {
 }
 .matriculation-number {
   color: #888;
+}
+.student-remove-btn {
+  background: transparent;
+  color: #c00;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 2px 8px;
+  margin-bottom: 4px;
+  margin-right: auto;
+  border-radius: 4px;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+
+.student-remove-btn:hover {
+  background: #ffeaea;
+  color: #a00;
+}
+
+.student-remove-btn:active {
+  transform: translateY(0);
+}
+.student-remove-btn:focus {
+  outline: 2px solid rgba(198, 40, 40, 0.18);
+  outline-offset: 2px;
+}
+
+.student-remove-btn[disabled],
+.student-remove-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }

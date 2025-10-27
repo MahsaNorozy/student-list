@@ -7,6 +7,7 @@ Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
 - Studentenliste anzeigen
 - Neue Studenten mit Noten hinzufügen
 - Studenten und ihre Noten bearbeiten
+- Studenten löschen
 
 ## Technologie-Stack
 
@@ -27,7 +28,7 @@ Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
      ```
 
 2. **Frontend starten**
-   - Wechsle in das Frontend-Verzeichnis (`student-list`)
+   - Wechsle in das Frontend-Projektverzeichnis (`student-list`)
    - Starte die Anwendung:
      ```
      npm run dev
@@ -45,7 +46,11 @@ npx eslint .
 ## Tests und Testabdeckung
 
 - Das Projekt verwendet **Vitest** für Unit-Tests.
-- Um alle Tests auszuführen, verwende im Projektverzeichnis:
+  Um alle Tests auszuführen, öffne ein Terminal im Projektverzeichnis und führe aus:
+
   ```
   npm test
   ```
+
+  TODO: tseslint auszuführen
+  TODO: npm run cy:open

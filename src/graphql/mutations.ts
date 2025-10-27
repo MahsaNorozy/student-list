@@ -31,3 +31,9 @@ export const UPDATE_STUDENT = gql`
     }
   }
 `;
+
+export const DELETE_STUDENT = gql`
+  mutation DeleteStudent($id: Int!) {
+    deleteStudent(id: $id)
+  }
+`;

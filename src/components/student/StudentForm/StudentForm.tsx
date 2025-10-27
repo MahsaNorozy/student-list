@@ -3,6 +3,7 @@ import { GET_STUDENT, GET_STUDENTS } from "../../../graphql/queries";
 import { Gender } from "../../../types/gender";
 import { stripTypenameDeep } from "../../../utils/clean";
 import "./StudentForm.css";
+import DeleteButton from "../../common/DeleteButton/DeleteButton";
 import { useMutation, useQuery } from "@apollo/client/react";
 import React, { useEffect, useState } from "react";
 
@@ -193,14 +194,12 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
 
       {grades.map((grade, idx) => (
         <div className="grade-block" key={idx}>
-          <button
+          <DeleteButton
+            ariaLabel="Diesen Kurs entfernen"
             className="grade-remove-btn"
-            onClick={() => removeGrade(idx)}
+            onClick={(() => removeGrade(idx)) as any}
             title="Diesen Kurs entfernen"
-            type="button"
-          >
-            ✖
-          </button>
+          />
 
           <input
             onChange={(e) =>
