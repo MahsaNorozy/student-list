@@ -1,13 +1,13 @@
 # Studentenverwaltung
 
-Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
+Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
 
 ## Funktionen
 
-- Studentenliste anzeigen
-- Neue Studenten mit Noten hinzufügen
-- Studenten und ihre Noten bearbeiten
-- Studenten löschen
+- Studierendenliste anzeigen
+- Neue Studierende mit Noten hinzufügen
+- Studierende und ihre Noten bearbeiten
+- Studierende löschen
 
 ## Technologie-Stack
 
@@ -37,20 +37,20 @@ Eine Webanwendung zur Verwaltung von Studenten und deren Noten.
 ## Hinweise
 
 - Die Anwendung verwendet eine **GraphQL-API** für die Kommunikation zwischen Frontend und Backend.
-- Der Quellcode ist mit **TSDoc**-Kommentaren dokumentiert. Um die TSDoc-Kommentare zu prüfen, kann folgender Befehl im Projektverzeichnis ausgeführt werden:
-
-```
-npx eslint .
-```
+- Der Quellcode enthält **TSDoc**‑Kommentare.
 
 ## Tests und Testabdeckung
 
-- Das Projekt verwendet **Vitest** für Unit-Tests.
-  Um alle Tests auszuführen, öffne ein Terminal im Projektverzeichnis und führe aus:
+- Das Projekt verwendet **Vitest** mit **React Testing Library** für Unit-Tests.
+  Alle Tests ausführen:
 
   ```
   npm test
   ```
 
-  TODO: tseslint auszuführen
-  TODO: npm run cy:open
+- Das Projekt verwendet **Cypress** für E2E‑Tests.  
+  Interaktiv (GUI):
+
+  ```
+  npm run cy:open
+  ```
