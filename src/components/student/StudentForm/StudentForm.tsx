@@ -88,7 +88,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
     ],
   });
 
-  const handleChange = (
+  const handleChangeInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
@@ -140,35 +140,35 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
 
       <input
         name="name"
-        onChange={handleChange}
+        onChange={handleChangeInput}
         placeholder="Name"
         required
         value={form.name}
       />
       <input
         name="email"
-        onChange={handleChange}
+        onChange={handleChangeInput}
         placeholder="E-Mail"
         required
         value={form.email}
       />
       <input
         name="address"
-        onChange={handleChange}
+        onChange={handleChangeInput}
         placeholder="Adresse"
         required
         value={form.address}
       />
       <input
         name="program"
-        onChange={handleChange}
+        onChange={handleChangeInput}
         placeholder="Studiengang"
         required
         value={form.program}
       />
       <input
         name="matriculationNumber"
-        onChange={handleChange}
+        onChange={handleChangeInput}
         placeholder="Matrikelnummer"
         required
         value={form.matriculationNumber}
@@ -176,7 +176,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
       <input
         min={1}
         name="semester"
-        onChange={handleChange}
+        onChange={handleChangeInput}
         placeholder="Semester"
         required
         type="number"
