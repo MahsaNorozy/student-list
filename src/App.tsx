@@ -1,6 +1,7 @@
 import logo from "./assets/Logo.png";
 import React from "react";
 import "./styles/App.css";
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -13,7 +14,9 @@ const App: React.FC = () => {
       </header>
 
       {/* Hier werden verschiedene Seiten gerendert */}
-      <Outlet />
+      <Suspense fallback={<div>Seite wird geladen…</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
