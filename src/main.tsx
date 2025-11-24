@@ -2,10 +2,10 @@ import client from "./apolloClient";
 import App from "./App";
 import "./styles/index.css";
 import { ApolloProvider } from "@apollo/client/react";
+import { lazy, StrictMode } from "react";
 const StudentsPage = lazy(() => import("./pages/StudentsPage"));
 const StudentDetailPage = lazy(() => import("./pages/StudentDetailPage"));
 const StudentEditPage = lazy(() => import("./pages/StudentEditPage"));
-import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 

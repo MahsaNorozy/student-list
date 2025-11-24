@@ -2,8 +2,8 @@ import { ADD_STUDENT, UPDATE_STUDENT } from "../../../graphql/mutations";
 import { GET_STUDENT, GET_STUDENTS } from "../../../graphql/queries";
 import { Gender } from "../../../types/gender";
 import { stripTypenameDeep } from "../../../utils/clean";
+import GradesEditor from "../GradesEditor/GradesEditor";
 import "./StudentForm.css";
-import DeleteButton from "../../common/DeleteButton/DeleteButton";
 import { useMutation, useQuery } from "@apollo/client/react";
 import React, { useEffect, useState } from "react";
 
@@ -91,10 +91,16 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   const handleChangeInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    // 1. Extrahiere name und value aus dem Input-Element
     const { name, value } = e.target;
+    // Beispiel: name = "name", value = "Max"
+
+    // 2. Aktualisiere State
     setForm((prev) => ({
-      ...prev,
+      ...prev, // Behalte alle anderen Felder (email, address, etc.)
       [name]: name === "semester" ? Number(value) : value,
+      // Falls name === "semester": konvertiere zu Number
+      // Sonst: behalte als String
     }));
   };
 
@@ -113,10 +119,13 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
     );
   };
 
-  const addGrade = () => setGrades([...grades, { ...emptyGrade }]);
+  const addGrade = () => {
+    setGrades((prev) => [...prev, { ...emptyGrade }]);
+  };
 
-  const removeGrade = (idx: number) =>
-    setGrades(grades.filter((_, i) => i !== idx));
+  const removeGrade = (idx: number) => {
+    setGrades((prev) => prev.filter((_, i) => i !== idx));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -190,63 +199,12 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
         <option value={Gender.Unknown}>{GenderLabel[Gender.Unknown]}</option>
       </select>
 
-      <h3>Notenspiegel</h3>
-
-      {grades.map((grade, idx) => (
-        <div className="grade-block" key={idx}>
-          <DeleteButton
-            ariaLabel="Diesen Kurs entfernen"
-            className="grade-remove-btn"
-            onClick={(() => removeGrade(idx)) as any}
-            title="Diesen Kurs entfernen"
-          />
-
-          <input
-            onChange={(e) =>
-              handleGradeChange(idx, "courseName", e.target.value)
-            }
-            placeholder="Kursname"
-            required
-            type="text"
-            value={grade.courseName}
-          />
-
-          <input
-            onChange={(e) =>
-              handleGradeChange(idx, "gradeValue", e.target.value)
-            }
-            placeholder="Note"
-            required
-            type="text"
-            value={grade.gradeValue}
-          />
-
-          <input
-            onChange={(e) => handleGradeChange(idx, "date", e.target.value)}
-            required
-            type="date"
-            value={grade.date}
-          />
-
-          <div className="grade-passed-row">
-            <input
-              checked={grade.isPassed}
-              id={`passed-${idx}`}
-              onChange={(e) =>
-                handleGradeChange(idx, "isPassed", e.target.checked)
-              }
-              type="checkbox"
-            />
-            <label htmlFor={`passed-${idx}`}> Bestanden</label>
-          </div>
-        </div>
-      ))}
-
-      <div className="add-grade-row">
-        <button onClick={addGrade} type="button">
-          Note hinzufügen
-        </button>
-      </div>
+      <GradesEditor
+        grades={grades}
+        onAddGrade={addGrade}
+        onChangeGrade={handleGradeChange}
+        onRemoveGrade={removeGrade}
+      />
 
       <div className="form-actions">
         <button disabled={adding || updating} type="submit">
