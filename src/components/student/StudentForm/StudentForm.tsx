@@ -4,6 +4,7 @@ import { Gender } from "../../../types/gender";
 import { stripTypenameDeep } from "../../../utils/clean";
 import GradesEditor from "../GradesEditor/GradesEditor";
 import "./StudentForm.css";
+import GradeStatistics from "../GradeStatistics/GradeStatistics";
 import { useMutation, useQuery } from "@apollo/client/react";
 import React, { useEffect, useState } from "react";
 
@@ -198,6 +199,8 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
         <option value={Gender.Divers}>{GenderLabel[Gender.Divers]}</option>
         <option value={Gender.Unknown}>{GenderLabel[Gender.Unknown]}</option>
       </select>
+
+      <GradeStatistics grades={grades} />
 
       <GradesEditor
         grades={grades}

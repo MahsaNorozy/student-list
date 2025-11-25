@@ -1,0 +1,39 @@
+.grade-statistics {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.grade-statistics h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.stat-label {
+  font-weight: 500;
+  color: #666;
+}
+
+.stat-value {
+  font-weight: 700;
+  color: #2196f3;
+}
