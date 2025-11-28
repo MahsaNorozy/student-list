@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 
 import type { Grade } from "../../../types";
 import "./GradeStatistics.css";
 
-// Berechnung
+// Echte Berechnung (keine künstliche Verzögerung)
 function calculateStatistics(grades: Grade[]) {
   console.log("🔄 calculateStatistics läuft");
 
@@ -44,29 +44,46 @@ interface Props {
 }
 
 const GradeStatistics: React.FC<Props> = ({ grades }) => {
-  // PROBLEM: wird bei JEDEM Render neu berechnet
-  // (auch wenn User nur im Name-Feld tippt)
-  const stats = calculateStatistics(grades);
+  console.log("🔄 GradeStatistics rendered");
 
-  // React.memo: Überspringt Render wenn grades sich nicht ändert
-  // const stats = useMemo(() => calculateStatistics(grades), [grades]);
+  // Lokaler UI-State, der NICHT von grades abhängt
+  const [showDetails, setShowDetails] = useState(false);
+
+  // ✅ useMemo: Berechnung läuft nur, wenn sich grades ändert
+  const stats = useMemo(() => calculateStatistics(grades), [grades]);
+  // const stats = calculateStatistics(grades);
 
   return (
     <div className="grade-statistics">
       <h3>📊 Notenübersicht</h3>
+
+      <button
+        className="toggle-details-button"
+        onClick={() => setShowDetails((prev) => !prev)}
+        type="button"
+      >
+        {showDetails ? "Details ausblenden" : "Details anzeigen"}
+      </button>
+
       <div className="stats-grid">
         <div className="stat-item">
           <span className="stat-label">Durchschnitt:</span>
           <span className="stat-value">{stats.average}</span>
         </div>
-        <div className="stat-item">
-          <span className="stat-label">Beste Note:</span>
-          <span className="stat-value">{stats.best}</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-label">Schlechteste Note:</span>
-          <span className="stat-value">{stats.worst}</span>
-        </div>
+
+        {showDetails && (
+          <>
+            <div className="stat-item">
+              <span className="stat-label">Beste Note:</span>
+              <span className="stat-value">{stats.best}</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">Schlechteste Note:</span>
+              <span className="stat-value">{stats.worst}</span>
+            </div>
+          </>
+        )}
+
         <div className="stat-item">
           <span className="stat-label">Bestanden:</span>
           <span className="stat-value">
@@ -82,7 +99,6 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
   );
 };
 
-// export default GradeStatistics;
-
-// React.memo: Überspringt Render wenn grades sich nicht ändert
+// ✅ React.memo: rendert nur neu, wenn sich props (grades) ändern
 export default React.memo(GradeStatistics);
+// export default GradeStatistics;
