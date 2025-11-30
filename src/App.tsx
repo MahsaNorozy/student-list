@@ -1,14 +1,13 @@
 import logo from "./assets/Logo.png";
-import React from "react";
+import React, { Suspense } from "react";
 import "./styles/App.css";
-import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
   return (
     <div className="app-container">
       <header className="app-header">
-        <img alt="Uni Logo" className="app-logo" src={logo} />
+        <img alt="Universitäts-Logo" className="app-logo" src={logo} />
         <h2>Studentenverwaltung</h2>
         <p className="sub">Verwalten und aktualisieren</p>
       </header>
