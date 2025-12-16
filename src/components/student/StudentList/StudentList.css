@@ -2,18 +2,36 @@
   list-style: none;
   padding-left: 0;
 }
+
 .student-list-item {
+  margin-bottom: 4px;
+}
+
+.student-list-item-button {
   align-items: center;
+  background: transparent;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
-  margin-bottom: 4px;
   padding: 8px;
+  text-align: left;
   transition: background 0.2s;
+  width: 100%;
 }
-.student-list-item.selected {
+
+.student-list-item.selected .student-list-item-button {
   background: #e0e0e0;
 }
+
+.student-list-item-button:hover {
+  background: #f5f5f5;
+}
+
+.student-list-item.selected .student-list-item-button:hover {
+  background: #d5d5d5;
+}
+
 .profile-info {
   flex: 1;
   text-align: left;
