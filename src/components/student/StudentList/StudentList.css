@@ -4,6 +4,9 @@
 }
 
 .student-list-item {
+  align-items: center;
+  display: flex;
+  gap: 8px;
   margin-bottom: 4px;
 }
 
@@ -14,10 +17,10 @@
   border-radius: 6px;
   cursor: pointer;
   display: flex;
+  flex: 1;
   padding: 8px;
   text-align: left;
   transition: background 0.2s;
-  width: 100%;
 }
 
 .student-list-item.selected .student-list-item-button {

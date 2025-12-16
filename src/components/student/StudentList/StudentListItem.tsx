@@ -33,16 +33,16 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
             ({student.matriculationNumber})
           </span>
         </span>
-
-        <DeleteButton
-          ariaLabel={`Lösche ${student.name}`}
-          className="student-remove-btn"
-          disabled={deletingId === student.id}
-          loading={deletingId === student.id}
-          onClick={(e) => onDelete(e, student.id)}
-          title="Student löschen"
-        />
       </button>
+
+      <DeleteButton
+        ariaLabel={`Lösche ${student.name}`}
+        className="student-remove-btn"
+        disabled={deletingId === student.id}
+        loading={deletingId === student.id}
+        onClick={(e) => onDelete(e, student.id)}
+        title="Student löschen"
+      />
     </li>
   );
 };
