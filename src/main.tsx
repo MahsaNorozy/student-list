@@ -3,19 +3,19 @@ import App from "./App";
 import "./styles/index.css";
 import { ApolloProvider } from "@apollo/client/react";
 import { lazy, StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 const StudentsPage = lazy(() => import("./pages/StudentsPage"));
 const StudentDetailPage = lazy(() => import("./pages/StudentDetailPage"));
 const StudentEditPage = lazy(() => import("./pages/StudentEditPage"));
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     children: [
       { element: <StudentsPage />, index: true },
-      { element: <StudentsPage />, path: "students" },
-      { element: <StudentEditPage />, path: "students/new" },
       { element: <StudentDetailPage />, path: "students/:id" },
+      { element: <StudentEditPage />, path: "students/new" },
       { element: <StudentEditPage />, path: "students/:id/edit" },
       { element: <div>404 – Nicht gefunden</div>, path: "*" },
     ],

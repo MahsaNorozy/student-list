@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import type { Grade } from "../../../types";
 import "./GradeStatistics.css";
 
-// Echte Berechnung (keine künstliche Verzögerung)
+// Echte Berechnung
 function calculateStatistics(grades: Grade[]) {
   console.log("🔄 calculateStatistics läuft");
 

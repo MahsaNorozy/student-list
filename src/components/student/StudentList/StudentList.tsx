@@ -1,6 +1,6 @@
 import { DELETE_STUDENT } from "../../../graphql/mutations";
 import { GET_STUDENTS } from "../../../graphql/queries";
-import StudentListView from "./StudentListView";
+import StudentListItems from "./StudentListItems";
 import "./StudentList.css";
 import { useMutation, useQuery } from "@apollo/client/react";
 import React from "react";
@@ -69,7 +69,7 @@ const StudentList: React.FC<Props> = ({ onSelect, selectedId }) => {
 
   // Delegiert Rendering an View-Komponente
   return (
-    <StudentListView
+    <StudentListItems
       deletingId={deletingId}
       onDelete={handleDelete}
       onSelect={onSelect}

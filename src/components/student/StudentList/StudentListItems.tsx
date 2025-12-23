@@ -13,7 +13,7 @@ interface StudentListViewProps {
 
 type StudentListItemData = Pick<Student, "id" | "matriculationNumber" | "name">;
 
-const StudentListView: React.FC<StudentListViewProps> = ({
+const StudentListItems: React.FC<StudentListViewProps> = ({
   deletingId,
   onDelete,
   onSelect,
@@ -36,4 +36,4 @@ const StudentListView: React.FC<StudentListViewProps> = ({
   );
 };
 
-export default StudentListView;
+export default StudentListItems;
