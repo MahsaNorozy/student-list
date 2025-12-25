@@ -50,8 +50,8 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   // ✅ useMemo: Berechnung läuft nur, wenn sich grades ändert
-  const stats = useMemo(() => calculateStatistics(grades), [grades]);
-  // const stats = calculateStatistics(grades);
+  const statistics = useMemo(() => calculateStatistics(grades), [grades]);
+  // const statistics = calculateStatistics(grades);
 
   return (
     <div className="grade-statistics">
@@ -68,18 +68,18 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
       <div className="stats-grid">
         <div className="stat-item">
           <span className="stat-label">Durchschnitt:</span>
-          <span className="stat-value">{stats.average}</span>
+          <span className="stat-value">{statistics.average}</span>
         </div>
 
         {showDetails && (
           <>
             <div className="stat-item">
               <span className="stat-label">Beste Note:</span>
-              <span className="stat-value">{stats.best}</span>
+              <span className="stat-value">{statistics.best}</span>
             </div>
             <div className="stat-item">
               <span className="stat-label">Schlechteste Note:</span>
-              <span className="stat-value">{stats.worst}</span>
+              <span className="stat-value">{statistics.worst}</span>
             </div>
           </>
         )}
@@ -87,12 +87,12 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
         <div className="stat-item">
           <span className="stat-label">Bestanden:</span>
           <span className="stat-value">
-            {stats.passed} / {stats.total}
+            {statistics.passed} / {statistics.total}
           </span>
         </div>
         <div className="stat-item">
           <span className="stat-label">Nicht bestanden:</span>
-          <span className="stat-value">{stats.failed}</span>
+          <span className="stat-value">{statistics.failed}</span>
         </div>
       </div>
     </div>
