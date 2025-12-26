@@ -1,10 +1,10 @@
 import BackButton from "../components/common/BackButton/BackButton";
 import StudentForm from "../components/student/StudentForm/StudentForm";
-import { useStudentIdParam } from "../hooks/useStudentIdParam";
+import { useStudentIdFromRoute } from "../hooks/useStudentIdFromRoute";
 import { useStudentNavigation } from "../hooks/useStudentNavigation";
 
 export default function StudentEditPage() {
-  const studentId = useStudentIdParam();
+  const studentId = useStudentIdFromRoute();
   const { goToList } = useStudentNavigation();
 
   return (
