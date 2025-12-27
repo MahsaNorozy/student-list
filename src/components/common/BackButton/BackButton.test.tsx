@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 
 const goToListMock = vi.fn();
 
-vi.mock("../../hooks/useStudentNavigation", () => ({
+vi.mock("../../../hooks/useStudentNavigation", () => ({
   useStudentNavigation: () => ({
     goToList: goToListMock,
   }),
