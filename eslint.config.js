@@ -99,7 +99,7 @@ export default [
       ],
       "react/react-in-jsx-scope": "off",
       "tsdoc/syntax": "warn",
-      "vitest/expect-expect": "warn", // Stellt sicher, dass jeder Test mindestens ein „expect“ enthält
+      "vitest/expect-expect": "warn", // Stellt sicher, dass jeder Test mindestens ein „expect" enthält
       "vitest/no-focused-tests": "error", // Verhindert versehentliches Belassen von test.only oder describe.only
       "vitest/no-identical-title": "error", // Verhindert doppelte Testnamen
     },
@@ -107,6 +107,15 @@ export default [
       react: {
         version: "detect",
       },
+    },
+  },
+  // Cypress E2E Tests: Vitest-Regeln deaktivieren
+  {
+    files: ["cypress/**/*.cy.{js,ts}"],
+    rules: {
+      "vitest/expect-expect": "off",
+      "vitest/no-focused-tests": "off",
+      "vitest/no-identical-title": "off",
     },
   },
 ];
