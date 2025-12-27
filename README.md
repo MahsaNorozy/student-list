@@ -48,8 +48,14 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
   npm test
   ```
 
-- Das Projekt verwendet **Cypress** für E2E‑Tests.  
-  Interaktiv (GUI):
+- Das Projekt verwendet **Cypress** für E2E-Tests.
+  Dev-Server starten:
+
+  ```
+   npm run dev
+  ```
+
+  Cypress öffnen:
 
   ```
   npm run cy:open
