@@ -5,7 +5,7 @@ describe("Neuen Studenten anlegen (mit echtem Backend)", () => {
   // 2. Datenbank muss erreichbar sein
   // 3. GraphQL-Endpoint muss verfügbar sein
 
-  it("füllt Formular aus, sendet Mutation und zeigt neuen Studenten in der Liste", () => {
+  it("füllt Formular aus, erstellt den Studenten in der Datenbank und zeigt ihn in der Liste der Studenten", () => {
     cy.visit("/students/new");
 
     // Formularfelder ausfüllen
@@ -34,7 +34,7 @@ describe("Neuen Studenten anlegen (mit echtem Backend)", () => {
     // Submit
     cy.get('button[type="submit"]').contains("Hinzufügen").click();
 
-    // Erwartung: Weiterleitung zur Root-Seite (/) und Anzeige des neuen Namens
+    // Weiterleitung zur Root-Seite (/) und Anzeige des neuen Namens
     cy.location("pathname").should("eq", "/");
     cy.contains("Test Student").should("be.visible");
 
