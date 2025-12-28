@@ -6,7 +6,17 @@ describe("Neuen Studenten anlegen (mit echtem Backend)", () => {
   // 3. GraphQL-Endpoint muss verfügbar sein
 
   it("füllt Formular aus, erstellt den Studenten in der Datenbank und zeigt ihn in der Liste der Studenten", () => {
-    cy.visit("/students/new");
+    // Startseite besuchen
+    cy.visit("/");
+
+    // Warten bis Button "Student hinzufügen" sichtbar ist
+    cy.get("button").contains("Student hinzufügen").should("be.visible");
+
+    // Button "Student hinzufügen" klicken
+    cy.contains("Student hinzufügen").click();
+
+    // Navigation zur Formular-Seite prüfen
+    cy.location("pathname").should("eq", "/students/new");
 
     // Formularfelder ausfüllen
     cy.get('input[name="name"]').type("Test Student");
