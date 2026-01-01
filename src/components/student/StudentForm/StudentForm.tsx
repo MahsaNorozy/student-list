@@ -1,7 +1,7 @@
 import { ADD_STUDENT, UPDATE_STUDENT } from "../../../graphql/mutations";
 import { GET_STUDENT, GET_STUDENTS } from "../../../graphql/queries";
 import { Gender } from "../../../types/gender";
-import { stripTypenameDeep } from "../../../utils/clean";
+import { removeTypenameDeep } from "../../../utils/removeTypenameDeep";
 import GradesEditor from "../GradesEditor/GradesEditor";
 import "./StudentForm.css";
 import GradeStatistics from "../GradeStatistics/GradeStatistics";
@@ -69,8 +69,8 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
     if (isEdit && editData?.student) {
       const { id, ...rest } = editData.student;
       // direkt bereinigt in den State
-      setForm(stripTypenameDeep(rest));
-      setGrades(stripTypenameDeep(editData.student.grades) as Grade[]);
+      setForm(removeTypenameDeep(rest));
+      setGrades(removeTypenameDeep(editData.student.grades) as Grade[]);
     } else if (!isEdit) {
       setForm(emptyStudent);
       setGrades([]);
@@ -131,7 +131,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const input = stripTypenameDeep({ ...form, grades });
+      const input = removeTypenameDeep({ ...form, grades });
       if (isEdit) {
         await updateStudent({ variables: { id: studentId, input } });
       } else {
