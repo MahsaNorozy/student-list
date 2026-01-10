@@ -48,6 +48,7 @@ export default [
       "no-tabs": "error",
       "no-undef": "off",
       "no-unused-expressions": "off",
+      "no-unused-vars": "off",
       "perfectionist/sort-imports": [
         "error",
         {

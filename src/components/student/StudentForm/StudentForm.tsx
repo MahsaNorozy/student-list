@@ -116,7 +116,9 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
     value: boolean | string
   ) => {
     setGrades((prev) =>
-      prev.map((g, i) => (i === idx ? { ...g, [field]: value } : g))
+      prev.map((grade, index) =>
+        index === idx ? { ...grade, [field]: value } : grade
+      )
     );
   };
 
@@ -125,7 +127,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   };
 
   const removeGrade = (idx: number) => {
-    setGrades((prev) => prev.filter((_, i) => i !== idx));
+    setGrades((prev) => prev.filter((_, index) => index !== idx));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

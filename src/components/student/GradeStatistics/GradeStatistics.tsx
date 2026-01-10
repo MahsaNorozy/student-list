@@ -8,8 +8,8 @@ function calculateStatistics(grades: Grade[]) {
   console.log("🔄 calculateStatistics läuft");
 
   const validGrades = grades
-    .map((g) => parseFloat(g.gradeValue))
-    .filter((v) => !isNaN(v) && v > 0);
+    .map((grade) => parseFloat(grade.gradeValue))
+    .filter((numericValue) => !isNaN(numericValue) && numericValue > 0);
 
   if (validGrades.length === 0) {
     return {
