@@ -14,7 +14,7 @@ export default function StudentEditPage() {
       <StudentForm
         onCancel={goToList}
         onSaved={goToList}
-        studentId={studentId} // null => "Neues" Formular, Zahl => "Bearbeiten" Formular
+        studentId={studentId}
       />
     </div>
   );

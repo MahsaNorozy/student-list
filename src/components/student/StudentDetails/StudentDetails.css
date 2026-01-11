@@ -7,6 +7,27 @@
   padding: 16px;
 }
 
+.student-details-error {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 24px auto;
+  max-width: 450px;
+  padding: 16px;
+  text-align: center;
+}
+
+.student-details-loading {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 24px auto;
+  max-width: 450px;
+  padding: 16px;
+  text-align: center;
+  color: #666;
+}
+
 .student-details-info {
   margin: 0 auto;
   max-width: 350px;

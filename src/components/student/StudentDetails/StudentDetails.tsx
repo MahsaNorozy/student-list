@@ -15,9 +15,9 @@ const StudentDetails: React.FC<Props> = ({ onEdit, studentId }) => {
     variables: { id: studentId },
   });
 
-  if (loading) return <div className="student-details">Lade…</div>;
+  if (loading) return <div className="student-details-loading">Lade…</div>;
   if (error || !data?.student)
-    return <div className="student-details">Nicht gefunden.</div>;
+    return <div className="student-details-error">404 - Nicht gefunden</div>;
 
   const student = data.student;
 
