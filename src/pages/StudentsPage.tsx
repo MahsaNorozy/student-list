@@ -1,17 +1,12 @@
 import StudentList from "../components/student/StudentList/StudentList";
-import { useNavigate } from "react-router-dom";
+import { useStudentNavigation } from "../hooks/useStudentNavigation";
 
 export default function StudentsPage() {
-  const navigate = useNavigate();
+  const { goToDetail, goToNew } = useStudentNavigation();
   return (
     <div>
-      <button onClick={() => navigate("/students/new")}>
-        Student hinzufügen
-      </button>
-      <StudentList
-        onSelect={(id) => navigate(`/students/${id}`)}
-        selectedId={null}
-      />
+      <button onClick={goToNew}>Student hinzufügen</button>
+      <StudentList onSelect={goToDetail} selectedId={null} />
     </div>
   );
 }
