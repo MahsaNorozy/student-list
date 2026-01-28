@@ -3,7 +3,6 @@ import React, { useMemo, useState } from "react";
 import type { Grade } from "../../../types";
 import "./GradeStatistics.css";
 
-// Echte Berechnung
 function calculateStatistics(grades: Grade[]) {
   console.log("🔄 calculateStatistics läuft");
 
@@ -47,7 +46,7 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
   console.log("🔄 GradeStatistics rendered");
 
   // Lokaler UI-State, der NICHT von grades abhängt
-  const [showDetails, setShowDetails] = useState(false);
+  const [showStatisticsDetails, setShowStatisticsDetails] = useState(false);
 
   // ✅ useMemo: Berechnung läuft nur, wenn sich grades ändert
   const statistics = useMemo(() => calculateStatistics(grades), [grades]);
@@ -59,10 +58,10 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
 
       <button
         className="toggle-details-button"
-        onClick={() => setShowDetails((prev) => !prev)}
+        onClick={() => setShowStatisticsDetails((prev) => !prev)}
         type="button"
       >
-        {showDetails ? "Details ausblenden" : "Details anzeigen"}
+        {showStatisticsDetails ? "Details ausblenden" : "Details anzeigen"}
       </button>
 
       <div className="stats-grid">
@@ -71,7 +70,7 @@ const GradeStatistics: React.FC<Props> = ({ grades }) => {
           <span className="stat-value">{statistics.average}</span>
         </div>
 
-        {showDetails && (
+        {showStatisticsDetails && (
           <>
             <div className="stat-item">
               <span className="stat-label">Beste Note:</span>
