@@ -83,3 +83,11 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
   ```
   npm run cy:open
   ```
+
+## Empfohlene VS Code Extensions (optional)
+
+Für eine bessere Entwicklungserfahrung können folgende Extensions installiert werden:
+
+- **ESLint**
+- **Prettier - Code formatter**
+- **SonarQube for IDE**
