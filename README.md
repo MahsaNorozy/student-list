@@ -14,10 +14,23 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
 - Frontend: React, TypeScript, Vite
 - Backend: ASP.NET Core Web API, SQLite, GraphQL
 
+## Voraussetzungen
+
+- .NET SDK 9.0
+- Node.js (Version 18 oder höher)
+
 ## Projekt starten
 
 1. **Backend starten**
    - Wechsle in das Backend-Projektverzeichnis (`student-list-backend`)
+   - Stelle sicher, dass die .NET-Tools wiederhergestellt werden:
+     ```
+     dotnet tool restore
+     ```
+   - Führe die Migrationen aus:
+     ```
+     dotnet ef database update
+     ```
    - Baue das Projekt:
      ```
      dotnet build
@@ -37,6 +50,7 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
      ```
      npm run dev
      ```
+   - Die Anwendung ist anschließend unter http://localhost:5173 erreichbar.
 
 ## Hinweise
 
@@ -56,7 +70,7 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
   Dev-Server starten:
 
   ```
-   npm run dev
+  npm run dev
   ```
 
   Cypress öffnen:
