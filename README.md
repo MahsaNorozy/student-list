@@ -14,6 +14,11 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
 - Frontend: React, TypeScript, Vite
 - Backend: ASP.NET Core Web API, SQLite, GraphQL
 
+## Struktur des Projekts
+
+> Das Projekt besteht aus zwei separaten Repositories (Frontend und Backend).
+> Beide Repositories müssen geklont werden, bevor die Schritte im Abschnitt „Projekt starten“ ausgeführt werden.
+
 ## Voraussetzungen
 
 - .NET SDK 9.0
