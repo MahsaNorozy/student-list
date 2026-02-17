@@ -15,14 +15,14 @@ describe("BackButton", () => {
     goToListMock.mockClear();
   });
 
-  it("ruft goToList auf, wenn der Button geklickt wird", async () => {
+  it("prüft den Aufruf der Navigationsfunktion bei Klick", async () => {
     render(<BackButton />);
     const button = screen.getByRole("button", { name: /Zurück/i });
     await userEvent.click(button);
     expect(goToListMock).toHaveBeenCalled();
   });
 
-  it("zeigt den Zurück-Text an", () => {
+  it("prüft, ob der Zurück-Button im DOM vorhanden ist", () => {
     render(<BackButton />);
     expect(screen.getByRole("button", { name: /Zurück/i })).toBeInTheDocument();
   });

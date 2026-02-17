@@ -90,7 +90,7 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   });
 
   const handleChangeInput = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     // 1. Extrahiere name und value aus dem Input-Element
     const { name, value } = e.target;
@@ -113,12 +113,12 @@ const StudentForm: React.FC<Props> = ({ onCancel, onSaved, studentId }) => {
   const handleGradeChange = (
     idx: number,
     field: keyof Grade,
-    value: boolean | string
+    value: boolean | string,
   ) => {
     setGrades((prev) =>
       prev.map((grade, index) =>
-        index === idx ? { ...grade, [field]: value } : grade
-      )
+        index === idx ? { ...grade, [field]: value } : grade,
+      ),
     );
   };
 
