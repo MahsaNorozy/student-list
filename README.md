@@ -29,6 +29,10 @@ Eine Webanwendung zur Verwaltung von Studierenden und ihren Noten.
 
 2. **Frontend starten**
    - Wechsle in das Frontend-Projektverzeichnis (`student-list`)
+   - Installiere die Abhängigkeiten:
+     ```
+     npm install
+     ```
    - Starte die Anwendung:
      ```
      npm run dev
