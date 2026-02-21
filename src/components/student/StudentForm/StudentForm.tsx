@@ -1,6 +1,6 @@
 import { ADD_STUDENT, UPDATE_STUDENT } from "../../../graphql/mutations";
 import { GET_STUDENT, GET_STUDENTS } from "../../../graphql/queries";
-import { Gender } from "../../../types/gender";
+import { Gender } from "../../../types/Gender";
 import { removeTypenameDeep } from "../../../utils/removeTypenameDeep";
 import GradesEditor from "../GradesEditor/GradesEditor";
 import "./StudentForm.css";
